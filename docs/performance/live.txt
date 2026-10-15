@@ -1,0 +1,4 @@
+PASS: 14 units / 500ms on real WASAPI at zero output volume; 519 UI messages.
+UI queue p95=0.804ms, p99=1.207ms, max=18.708ms
+UI interaction+paint p95=0.100ms, p99=0.117ms, max=3.275ms
+frames=385474; buffer=1440 frames (30.0 ms); reported latency=0.0 ms; MMCSS=True; buffers=803; max render=2.524 ms; max service gap=11.241 ms; empty-buffer wakes=0; wait timeouts=0; error=

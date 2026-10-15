@@ -31,6 +31,8 @@
 
 `test.ps1` 不依赖真实音频设备：检查混音、交互，以及程序画面与最终原型的逐像素一致性。要额外测试本机 WASAPI 音频设备，运行 `./test.ps1 -Device`；设备测试使用零主音量。
 
+1.1 版本优化了整块声部混音、增益包络、字形缓存及局部绘制，并接入系统 MMCSS 音频调度。`./tools/benchmark.ps1 -Live` 可记录本机混音耗时和真实设备下的界面延迟，测试保持零输出音量。算法与实测数据见 [性能说明](docs/性能说明.md)。
+
 ## 自动 Release
 
 仓库配置了 [GitHub Actions 工作流](.github/workflows/release.yml)：

@@ -1,0 +1,10 @@
+Mixer benchmark; percentage of one core; virtual playback; includes OS scheduling variation.
+14 units / 500ms: frames=480, realtime_CPU=0.333%, mean=0.0333ms, p95=0.0404ms, p99=0.0454ms, max=0.0928ms, gen0=0
+64 units / 50ms: frames=480, realtime_CPU=9.124%, mean=0.9124ms, p95=0.9917ms, p99=1.1496ms, max=1.1687ms, gen0=0
+64 -> 14 units / settled: frames=480, realtime_CPU=0.322%, mean=0.0322ms, p95=0.0369ms, p99=0.0435ms, max=0.0649ms, gen0=0
+paused / settled: frames=480, realtime_CPU=0.004%, mean=0.0004ms, p95=0.0004ms, p99=0.0004ms, max=0.0016ms, gen0=0
+14 units / 500ms: frames=1440, realtime_CPU=0.325%, mean=0.0976ms, p95=0.1084ms, p99=0.1153ms, max=0.1284ms, gen0=0
+64 units / 50ms: frames=1440, realtime_CPU=8.888%, mean=2.6665ms, p95=2.8287ms, p99=2.9225ms, max=3.1529ms, gen0=0
+64 -> 14 units / settled: frames=1440, realtime_CPU=0.321%, mean=0.0962ms, p95=0.1078ms, p99=0.1358ms, max=0.1364ms, gen0=0
+paused / settled: frames=1440, realtime_CPU=0.002%, mean=0.0006ms, p95=0.0006ms, p99=0.0006ms, max=0.0006ms, gen0=0
+UI paint: mean=0.0089ms, p95=0.0117ms, p99=0.0164ms, max=0.0522ms, gen0=0

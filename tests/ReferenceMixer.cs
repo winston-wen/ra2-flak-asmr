@@ -1,0 +1,126 @@
+// Frozen pre-optimization mixer, compiled ONLY into the regression test tool.
+// Keep sample scheduling and envelope behavior independent of the optimized loops.
+using System;
+using System.IO;
+using System.Reflection;
+namespace FlakASMR {
+sealed class ReferenceMixer {
+    public const int Rate=48000, MaxUnits=32;
+    public volatile Settings Config=new Settings(3,2,500,500,50,50,70,30,false,false);
+    readonly float[][][] clips=new float[2][][];
+    readonly Random random=new Random(72491);
+    readonly Unit[] units=new Unit[64];
+    readonly Voice[] voices=new Voice[2048];
+    int voiceCount; long clock; bool wasPlaying, wasVolley;
+    bool hasNormal;double spareNormal;
+    double master, normalization=1, width=.7;
+    public volatile float Peak;
+    public long Shots;
+    public int ActiveVoices { get { return voiceCount; } }
+    public double SampleInterval(int mean,int std) {
+        if(std==0)return mean;
+        double normal;
+        if(hasNormal) {normal=spareNormal;hasNormal=false;}
+        else {
+            double radius=Math.Sqrt(-2*Math.Log(1-random.NextDouble()));
+            double angle=2*Math.PI*random.NextDouble();
+            normal=radius*Math.Cos(angle);spareNormal=radius*Math.Sin(angle);hasNormal=true;
+        }
+        return Math.Max(50,mean+std*normal);
+    }
+    sealed class Unit { public bool Enabled; public long Next; public int Last=-1, Interval; public double Gain; public double Pan; }
+    struct Voice { public float[] Clip; public int Unit; public long Start; public double L,R; }
+    public ReferenceMixer() {
+        for(int g=0;g<2;g++) {
+            clips[g]=new float[4][];
+            for(int k=0;k<4;k++) {
+                string name=g==0 ? "bflaatt"+(char)('a'+k) : "vflaat2"+(char)('a'+k);
+                using(Stream s=Assembly.GetExecutingAssembly().GetManifestResourceStream(name+".wav")) {
+                    if(s==null) throw new InvalidDataException("缺少音效："+name);
+                    using(BinaryReader r=new BinaryReader(s)) {
+                        if(new string(r.ReadChars(4))!="RIFF") throw new InvalidDataException(name);
+                        r.ReadInt32(); r.ReadBytes(4);
+                        while(s.Position<s.Length) {
+                            string id=new string(r.ReadChars(4)); int size=r.ReadInt32();
+                            if(id=="data") {
+                                clips[g][k]=new float[size/2];
+                                for(int i=0;i<size/2;i++) clips[g][k][i]=r.ReadInt16()/32768f;
+                                break;
+                            }
+                            s.Seek(size+(size&1),SeekOrigin.Current);
+                        }
+                    }
+                }
+                if(clips[g][k]==null) throw new InvalidDataException(name);
+            }
+        }
+        for(int i=0;i<units.Length;i++) units[i]=new Unit {Pan=(i%32)*.61803398875%1*2-1};
+    }
+    public bool BoundariesZero() {
+        foreach(float[][] group in clips) foreach(float[] clip in group)
+            if(clip[0]!=0 || clip[clip.Length-1]!=0) return false;
+        return true;
+    }
+    void Shot(int index,long start,int count) {
+        if(voiceCount==voices.Length) return;
+        Unit u=units[index]; int variant=random.Next(3); if(variant>=u.Last && u.Last>=0) variant++;
+        if(u.Last<0) variant=random.Next(4); u.Last=variant;
+        double angle=(u.Pan*width+1)*Math.PI/4;
+        voices[voiceCount++]=new Voice {Clip=clips[index/32][variant],Unit=index,Start=start,L=Math.Cos(angle),R=Math.Sin(angle)};
+        Shots++;
+    }
+    // Only the audio thread owns timing and voices. UI updates swap an immutable snapshot.
+    public void Render(short[] output,int frames) {
+        Settings c=Config; long end=clock+frames;
+        int total=c.B+c.V;
+        width += (c.Width/100.0-width)*.1;
+        bool starting=c.Playing && !wasPlaying;
+        bool modeChanged=c.Volley!=wasVolley;
+        for(int i=0;i<64;i++) {
+            Unit u=units[i]; bool enabled=c.Playing && i%32<(i<32?c.B:c.V);
+            int interval=(i<32?c.IntervalB:c.IntervalV)*Rate/1000;
+            if(enabled && (!u.Enabled || starting || modeChanged))
+                u.Next=clock+(c.Volley || i%32==0 ? 0 : (long)(random.NextDouble()*interval));
+            u.Enabled=enabled;
+            if(!enabled) continue;
+            // Changing speed takes effect within the next interval, even after a long pause.
+            if(u.Interval!=interval && u.Next>clock+interval) u.Next=clock+interval;
+            u.Interval=interval;
+            while(u.Next<end) {
+                Shot(i,Math.Max(clock,u.Next),total);
+                int std=c.Volley?0:(i<32?c.StdB:c.StdV);
+                u.Next+=(long)Math.Round(SampleInterval(i<32?c.IntervalB:c.IntervalV,std)*Rate/1000);
+            }
+        }
+        wasPlaying=c.Playing; wasVolley=c.Volley;
+        double targetMaster=c.Playing?c.Volume/100.0:0;
+        double targetNorm=.7/Math.Sqrt(Math.Max(1,total));
+        float peak=0;
+        for(int n=0;n<frames;n++) {
+            // 12 ms master envelope; disabled units have a 15 ms tail envelope.
+            master+=(targetMaster-master)/576;
+            normalization+=(targetNorm-normalization)/2400;
+            for(int i=0;i<64;i++) units[i].Gain+=((units[i].Enabled?1:0)-units[i].Gain)/720;
+            double l=0,r=0; long now=clock+n;
+            for(int j=voiceCount-1;j>=0;j--) {
+                Voice v=voices[j]; long position=now-v.Start;
+                if(position>=v.Clip.Length || (units[v.Unit].Gain<.00001 && !units[v.Unit].Enabled)) {
+                    voices[j]=voices[--voiceCount]; voices[voiceCount]=new Voice(); continue;
+                }
+                if(position<0) continue;
+                double a=v.Clip[(int)position]*units[v.Unit].Gain;
+                l+=a*v.L; r+=a*v.R;
+            }
+            l=Limit(l*normalization*master); r=Limit(r*normalization*master);
+            output[n*2]=(short)Math.Round(l*32767); output[n*2+1]=(short)Math.Round(r*32767);
+            peak=Math.Max(peak,(float)Math.Max(Math.Abs(l),Math.Abs(r)));
+        }
+        clock=end; Peak=peak;
+    }
+    static double Limit(double x) {
+        double a=Math.Abs(x); if(a<=.75) return x;
+        return Math.Sign(x)*(.75+.23*Math.Tanh((a-.75)/.23));
+    }
+}
+
+}

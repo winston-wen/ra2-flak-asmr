@@ -8,6 +8,19 @@ $flakExe = Join-Path $flakDist 'RA2FlakASMR.exe'
 if (!(Test-Path -LiteralPath $flakExe)) { throw 'Run ./build.ps1 first.' }
 $flakReports = Join-Path $flakRoot 'build/test-results'
 New-Item -ItemType Directory -Force -Path $flakReports | Out-Null
+$flakCompiler = Join-Path $env:WINDIR 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
+$flakRegression = Join-Path $flakReports 'MixerRegression.exe'
+$flakRegressionArguments = @('/nologo','/target:exe','/platform:x64','/optimize+','/utf8output',('/out:'+$flakRegression))
+foreach($flakClip in Get-ChildItem -LiteralPath (Join-Path $flakRoot 'assets/audio') -Filter '*.wav') {
+    $flakRegressionArguments += '/resource:'+$flakClip.FullName+','+$flakClip.Name
+}
+foreach($flakSource in @('src/Settings.cs','src/Mixer.cs','tests/ReferenceMixer.cs','tests/MixerRegression.cs')) {
+    $flakRegressionArguments += Join-Path $flakRoot $flakSource
+}
+& $flakCompiler $flakRegressionArguments
+if($LASTEXITCODE -ne 0){throw 'Mixer regression compilation failed.'}
+& $flakRegression
+if($LASTEXITCODE -ne 0){throw 'Mixer reference comparison failed.'}
 function Invoke-FlakProcess([string[]]$Arguments) {
     $flakQuoted = @($Arguments | ForEach-Object { '"' + $_ + '"' })
     $flakProcess = Start-Process -FilePath $flakExe -ArgumentList $flakQuoted -WorkingDirectory $flakDist -WindowStyle Hidden -PassThru
