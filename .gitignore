@@ -1,0 +1,12 @@
+/dist/
+/build/
+/src/bin/
+/src/obj/
+/.vs/
+**/__pycache__/
+*.pyc
+*.user
+*.suo
+*.drawio.bkp
+*.drawio.dtmp
+.venv/
