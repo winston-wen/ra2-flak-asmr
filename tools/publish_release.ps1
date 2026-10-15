@@ -34,8 +34,14 @@ if ($DryRun) {
 }
 if (!(Get-Command gh -ErrorAction SilentlyContinue)) { throw 'GitHub CLI is required to publish.' }
 if (!$env:GH_TOKEN) { throw 'GH_TOKEN is required to publish.' }
-& gh release view $flakTag --repo $env:GITHUB_REPOSITORY --json tagName 2>$null | Out-Null
-$flakExisting = $LASTEXITCODE -eq 0
+# In Windows PowerShell 5.1, redirected native stderr can terminate the script.
+# A missing release is expected on the first build; inspect the exit code instead.
+$flakSavedPreference = $ErrorActionPreference
+try {
+    $ErrorActionPreference = 'SilentlyContinue'
+    & gh release view $flakTag --repo $env:GITHUB_REPOSITORY --json tagName 2>$null | Out-Null
+    $flakExisting = $LASTEXITCODE -eq 0
+} finally { $ErrorActionPreference = $flakSavedPreference }
 if ($flakExisting) {
     & gh release upload $flakTag $flakExe $flakChecksums --repo $env:GITHUB_REPOSITORY --clobber
     if ($LASTEXITCODE -ne 0) { throw 'Release asset upload failed.' }
