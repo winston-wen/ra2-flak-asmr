@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 
 namespace FlakASMR {
-// One player's account and displayed credit counter, shared by every oil well.
+// One player's account and displayed credit counter, shared by every oil derrick.
 // Frame numbers are simulation time, so pausing never re-captures existing wells.
 sealed class OilEconomy {
     public const int MaxWells=32, FramesPerSecond=60, PaymentFrames=100;

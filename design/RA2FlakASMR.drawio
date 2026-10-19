@@ -106,7 +106,7 @@
         <mxCell id="b-std-plus" value="" tooltip="plus / normal" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="b-std">
           <mxGeometry x="60" y="0" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="oil-label" value="" tooltip="Oil wells · 两端对齐" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="frame">
+        <mxCell id="oil-label" value="" tooltip="Oil Derrick · 两端对齐" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="frame">
           <mxGeometry x="10" y="180" width="64" height="20" as="geometry" />
         </mxCell>
         <mxCell id="oil-count" value="" tooltip="右侧参数" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="frame">
@@ -7151,27 +7151,33 @@
           <mxGeometry x="0" y="0" width="7" height="20" as="geometry" />
         </mxCell>
         <mxCell id="oil-label-char-1" value="i" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
-          <mxGeometry x="9" y="0" width="3" height="20" as="geometry" />
+          <mxGeometry x="8" y="0" width="3" height="20" as="geometry" />
         </mxCell>
         <mxCell id="oil-label-char-2" value="l" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
-          <mxGeometry x="15" y="0" width="3" height="20" as="geometry" />
+          <mxGeometry x="12" y="0" width="3" height="20" as="geometry" />
         </mxCell>
         <mxCell id="oil-label-char-3" value=" " parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
-          <mxGeometry x="20" y="0" width="5" height="20" as="geometry" />
+          <mxGeometry x="16" y="0" width="5" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="oil-label-char-4" value="w" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
-          <mxGeometry x="28" y="0" width="10" height="20" as="geometry" />
+        <mxCell id="oil-label-char-4" value="D" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="22" y="0" width="7" height="20" as="geometry" />
         </mxCell>
         <mxCell id="oil-label-char-5" value="e" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
-          <mxGeometry x="40" y="0" width="6" height="20" as="geometry" />
+          <mxGeometry x="29" y="0" width="6" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="oil-label-char-6" value="l" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+        <mxCell id="oil-label-char-6" value="r" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="36" y="0" width="5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-7" value="r" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="42" y="0" width="5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-8" value="i" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
           <mxGeometry x="48" y="0" width="3" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="oil-label-char-7" value="l" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
-          <mxGeometry x="54" y="0" width="3" height="20" as="geometry" />
+        <mxCell id="oil-label-char-9" value="c" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="52" y="0" width="6" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="oil-label-char-8" value="s" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+        <mxCell id="oil-label-char-10" value="k" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
           <mxGeometry x="59" y="0" width="6" height="20" as="geometry" />
         </mxCell>
         <mxCell id="oil-count-well" value="" parent="oil-count" style="rounded=0;shadow=0;fillColor=#090000;strokeColor=#E12B0A;strokeWidth=1;" vertex="1">
@@ -8388,7 +8394,7 @@
         <mxCell id="b-std-plus" value="" tooltip="plus / normal" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="b-std">
           <mxGeometry x="60" y="0" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="oil-label" value="" tooltip="Oil wells · 两端对齐" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="frame">
+        <mxCell id="oil-label" value="" tooltip="Oil Derrick · 两端对齐" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="frame">
           <mxGeometry x="10" y="180" width="64" height="20" as="geometry" />
         </mxCell>
         <mxCell id="oil-count" value="" tooltip="右侧参数" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="frame">
@@ -15433,27 +15439,33 @@
           <mxGeometry x="0" y="0" width="7" height="20" as="geometry" />
         </mxCell>
         <mxCell id="oil-label-char-1" value="i" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
-          <mxGeometry x="9" y="0" width="3" height="20" as="geometry" />
+          <mxGeometry x="8" y="0" width="3" height="20" as="geometry" />
         </mxCell>
         <mxCell id="oil-label-char-2" value="l" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
-          <mxGeometry x="15" y="0" width="3" height="20" as="geometry" />
+          <mxGeometry x="12" y="0" width="3" height="20" as="geometry" />
         </mxCell>
         <mxCell id="oil-label-char-3" value=" " parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
-          <mxGeometry x="20" y="0" width="5" height="20" as="geometry" />
+          <mxGeometry x="16" y="0" width="5" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="oil-label-char-4" value="w" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
-          <mxGeometry x="28" y="0" width="10" height="20" as="geometry" />
+        <mxCell id="oil-label-char-4" value="D" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="22" y="0" width="7" height="20" as="geometry" />
         </mxCell>
         <mxCell id="oil-label-char-5" value="e" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
-          <mxGeometry x="40" y="0" width="6" height="20" as="geometry" />
+          <mxGeometry x="29" y="0" width="6" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="oil-label-char-6" value="l" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+        <mxCell id="oil-label-char-6" value="r" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="36" y="0" width="5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-7" value="r" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="42" y="0" width="5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-8" value="i" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
           <mxGeometry x="48" y="0" width="3" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="oil-label-char-7" value="l" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
-          <mxGeometry x="54" y="0" width="3" height="20" as="geometry" />
+        <mxCell id="oil-label-char-9" value="c" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="52" y="0" width="6" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="oil-label-char-8" value="s" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+        <mxCell id="oil-label-char-10" value="k" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
           <mxGeometry x="59" y="0" width="6" height="20" as="geometry" />
         </mxCell>
         <mxCell id="oil-count-well" value="" parent="oil-count" style="rounded=0;shadow=0;fillColor=#090000;strokeColor=#E12B0A;strokeWidth=1;" vertex="1">

@@ -46,7 +46,7 @@ static class OilIncomeTests {
         }
         Mixer stressed=new Mixer(2);stressed.Config=new Settings(32,32,50,50,50,50,70,100,true,false,32);
         short[] pcm=new short[960];for(int i=0;i<1000;i++) {stressed.Render(pcm,480);foreach(short sample in pcm)Check(Math.Abs((int)sample)<32767,"64 flak plus 32 oil no clipping");}
-        Check(stressed.Oil.Economy.RecurringIncome==32*20*5,"32 oil wells share payment clock");
+        Check(stressed.Oil.Economy.RecurringIncome==32*20*5,"32 oil derricks share payment clock");
         Console.WriteLine("PASS: oil capture/timers, 60 fps global counter and interrupt voice, 20/40/100/1000 credit traces, four block sizes, pause/resume, oil-only PCM and 64+32 stress.");
     }
 }

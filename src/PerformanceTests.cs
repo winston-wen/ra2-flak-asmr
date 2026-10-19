@@ -39,7 +39,7 @@ static class PerformanceTests {
                 if(queue.Count<100)throw new Exception("Insufficient UI probe replies");
                 queue.Sort();paint.Sort();
                 string report=string.Format(CultureInfo.InvariantCulture,
-                    "PASS: "+(drag?"20 units / continuous captured synthetic window move + full presentation":"14 units / logical-canvas interaction")+" + 32 oil wells / 500ms on real WASAPI at zero output volume; {0} UI messages.\r\nUI queue p95={1:F3}ms, p99={2:F3}ms, max={3:F3}ms\r\nUI interaction+paint p95={4:F3}ms, p99={5:F3}ms, max={6:F3}ms\r\n{7}\r\n",
+                    "PASS: "+(drag?"20 units / continuous captured synthetic window move + full presentation":"14 units / logical-canvas interaction")+" + 32 oil derricks / 500ms on real WASAPI at zero output volume; {0} UI messages.\r\nUI queue p95={1:F3}ms, p99={2:F3}ms, max={3:F3}ms\r\nUI interaction+paint p95={4:F3}ms, p99={5:F3}ms, max={6:F3}ms\r\n{7}\r\n",
                     queue.Count,queue[(int)(queue.Count*.95)],queue[(int)(queue.Count*.99)],queue[queue.Count-1],
                     paint[(int)(paint.Count*.95)],paint[(int)(paint.Count*.99)],paint[paint.Count-1],audio.Diagnostics());
                 File.WriteAllText(path,report);

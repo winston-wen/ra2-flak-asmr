@@ -99,7 +99,7 @@ static class Program {
         } catch(Exception e) {File.WriteAllText(path,"FAIL\r\n"+e);Environment.ExitCode=1;}
     }
     static void DeviceTest(string path) {
-        try {using(AudioEngine e=new AudioEngine()) {e.Mixer.Config=new Settings(32,32,100,100,50,50,100,0,true,false,32);Thread.Sleep(2000);long first=e.CompletedFrames;Thread.Sleep(1000);long second=e.CompletedFrames-first;Assert(e.Error==null,e.Error);Assert(e.CompletedFrames>48000,"Insufficient completed buffers: "+e.Diagnostics());Assert(second>=44000 && second<=52000,"Output rate mismatch: frames per second="+second);File.WriteAllText(path,"PASS: WASAPI output with 64 units + 32 oil wells mixed at zero master volume; "+e.Diagnostics()+"; warm frames per second="+second+"\r\n");}}
+        try {using(AudioEngine e=new AudioEngine()) {e.Mixer.Config=new Settings(32,32,100,100,50,50,100,0,true,false,32);Thread.Sleep(2000);long first=e.CompletedFrames;Thread.Sleep(1000);long second=e.CompletedFrames-first;Assert(e.Error==null,e.Error);Assert(e.CompletedFrames>48000,"Insufficient completed buffers: "+e.Diagnostics());Assert(second>=44000 && second<=52000,"Output rate mismatch: frames per second="+second);File.WriteAllText(path,"PASS: WASAPI output with 64 units + 32 oil derricks mixed at zero master volume; "+e.Diagnostics()+"; warm frames per second="+second+"\r\n");}}
         catch(Exception e) {File.WriteAllText(path,"FAIL: "+e);Environment.ExitCode=1;}
     }
     static void NotificationTest(string path) {
@@ -111,7 +111,7 @@ static class Program {
                 Assert(e.Error==null,e.Error);Assert(e.FallbackPolls>0,"Notification fault was not exercised");
                 Assert(rate>=44000 && rate<=52000,"Lost notifications starved output: "+e.Diagnostics());
                 Assert(e.ZeroPaddingWakeups==0,"Audio buffer drained during lost-notification test: "+e.Diagnostics());
-                File.WriteAllText(path,"PASS: all device notifications intentionally ignored; both columns 10/500/100 + 32 oil wells, zero master; warm frames per second="+rate+"; "+e.Diagnostics()+"\r\n");
+                File.WriteAllText(path,"PASS: all device notifications intentionally ignored; both columns 10/500/100 + 32 oil derricks, zero master; warm frames per second="+rate+"; "+e.Diagnostics()+"\r\n");
             }
         }catch(Exception e) {File.WriteAllText(path,"FAIL: "+e);Environment.ExitCode=1;}
     }
@@ -127,7 +127,7 @@ static class Program {
                 }
                 Assert(e.CompletedFrames>=Mixer.Rate*59L,"Sustained playback lost output time: "+e.Diagnostics());
                 Assert(e.ZeroPaddingWakeups==0,"Sustained playback underrun: "+e.Diagnostics());
-                File.WriteAllText(path,"PASS: 60s real WASAPI, both columns 10/500/100 + 32 oil wells, zero master; max observed frame-progress gap="+maxStall+" ms; "+e.Diagnostics()+"\r\n");
+                File.WriteAllText(path,"PASS: 60s real WASAPI, both columns 10/500/100 + 32 oil derricks, zero master; max observed frame-progress gap="+maxStall+" ms; "+e.Diagnostics()+"\r\n");
             }
         }catch(Exception e) {File.WriteAllText(path,"FAIL: "+e);Environment.ExitCode=1;}
     }

@@ -180,7 +180,7 @@ class Scene:
                 y = 96 + row * 28
                 self.justified_label(('left' if side == 'v' else 'right') + '-label-' + name, label, label_x, y)
                 self.field(side, name, field_x, y, value)
-        self.justified_label("oil-label", "Oil wells", 10, 180, 64, 20)
+        self.justified_label("oil-label", "Oil Derrick", 10, 180, 64, 20)
         self.field("oil", "count", 210, 180, 0)
         start = len(self.items)
         groups_before = set(self.groups)
