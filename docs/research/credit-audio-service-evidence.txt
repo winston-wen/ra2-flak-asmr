@@ -1,0 +1,157 @@
+红警2 / 尤里的复仇：CreditUp 蜂鸣修复，2026-10-19
+方法：只读解析本机 EXE 与 audio.bag；没有运行或修改游戏。
+
+旧实现遗漏音频服务节流，直接把每个 60 Hz 钱数更新当作声音重启。
+原版两款 EXE 都先比较真实时间差：cmp eax,0x21；jbe 跳过服务。只有整数毫秒差 >33 才调用声音事件服务。
+YR 0x409360 初始化 QueryPerformanceFrequency / 1000，再由 0x4093C0 将 QPC 转为毫秒。
+声音事件服务在同一批处理内按同一事件的 Limit 裁剪，CreditUp 的 Limit=1，因此请求次数不等于实际播放启动次数。
+生成器采用理想连续轮询下最早可服务的 34 ms（1632 个采样），具体原版运行可能因调用时机与调度更晚。
+
+音效校验：language.mix/audio.mix 与 langmd.mix/audiomd.mix 的 ucredup 条目一致。
+IDX：22050 Hz，Flags=12，压缩字节408，ChunkSize=512。原始字节 SHA256=8ad56eb3d6ebc61d26a6cabe3366e65c6be776969a97c36173f09741dc836276。
+独立 IMA ADPCM 解码产生809个16-bit采样，与项目 assets/audio/original/ucredup.wav 全部一致，最大差0。
+
+修复前后离线 PCM：同一笔20元收入、0.5秒、48kHz单声道。
+请求均17次；旧启动17次，修复后启动8次。
+在100–250ms窗口，16.667ms延迟的归一化自相关：旧1.000000，修复后-0.005204。
+这验证错误的60Hz音效开头循环已消失，并非对人耳听感或实机游戏录音的测量。
+回归检查另外逐一比较每个34ms播放窗口中1ms接缝以外的所有PCM，包含16.67ms之后的源音效与最终尾声。
+
+攻击声补充：原版 FlakTroopAttackAir、FlakTrackAttackAir、FlakCannonAttack 都使用 random interrupt，未单设 Limit，继承 Defaults 的5。
+同样经过共享声音服务，但按声音事件类型分别限制，不是全局只能发一声。生成器现有炮声仍按各单位独立混音，本次修复只调整油井进账声。
+
+game.exe: SHA256=73288c03b58d370be268ca6d156b4e33bfdb2066dc980359467d8852ff3b00df, image base=0x400000
+00406EA0: mov      eax, dword ptr [0x83146c]
+00406EA5: sub      esp, 8
+00406EA8: test     eax, eax
+00406EAA: jne      0x406f1d
+00406EAC: mov      eax, dword ptr [0x831438]
+00406EB1: test     eax, eax
+00406EB3: je       0x406f1d
+00406EB5: push     esi
+00406EB6: push     edi
+00406EB7: mov      dword ptr [0x83146c], 1
+00406EC1: call     0x4092d0
+00406EC6: mov      ecx, dword ptr [0x831470]
+00406ECC: mov      esi, eax
+00406ECE: mov      edi, edx
+00406ED0: mov      edx, dword ptr [0x831474]
+00406ED6: sub      eax, ecx
+00406ED8: mov      ecx, edi
+00406EDA: sbb      ecx, edx
+00406EDC: mov      dword ptr [esp + 0xc], ecx
+00406EE0: jne      0x406ee7
+00406EE2: cmp      eax, 0x21
+00406EE5: jbe      0x406f11
+00406EE7: call     0x4041b0
+00406EEC: call     0x714330
+00406EF1: call     0x715ba0
+00406EF6: mov      ecx, 0xa35d78
+00406EFB: call     0x6e7cd0
+00406F00: call     0x7717c0
+00406F05: mov      dword ptr [0x831470], esi
+00406F0B: mov      dword ptr [0x831474], edi
+00406F11: pop      edi
+00406F12: mov      dword ptr [0x83146c], 0
+00406F1C: pop      esi
+00406F1D: add      esp, 8
+00406F20: ret      
+00406F21: nop      
+00406F22: nop      
+00406F23: nop      
+00406F24: nop      
+00406F25: nop      
+00406F26: nop      
+00406F27: nop      
+00406F28: nop      
+00406F29: nop      
+00406F2A: nop      
+00406F2B: nop      
+00406F2C: nop      
+00406F2D: nop      
+00406F2E: nop      
+00406F2F: nop      
+
+gamemd.exe: SHA256=3e81a61775d2745d1dabe397325ef663cd994ffc194da4e998e3bf5d2d308600, image base=0x400000
+00406F70: mov      eax, dword ptr [0x87e75c]
+00406F75: sub      esp, 8
+00406F78: test     eax, eax
+00406F7A: jne      0x406fed
+00406F7C: mov      eax, dword ptr [0x87e728]
+00406F81: test     eax, eax
+00406F83: je       0x406fed
+00406F85: push     esi
+00406F86: push     edi
+00406F87: mov      dword ptr [0x87e75c], 1
+00406F91: call     0x4093b0
+00406F96: mov      ecx, dword ptr [0x87e760]
+00406F9C: mov      esi, eax
+00406F9E: mov      edi, edx
+00406FA0: mov      edx, dword ptr [0x87e764]
+00406FA6: sub      eax, ecx
+00406FA8: mov      ecx, edi
+00406FAA: sbb      ecx, edx
+00406FAC: mov      dword ptr [esp + 0xc], ecx
+00406FB0: jne      0x406fb7
+00406FB2: cmp      eax, 0x21
+00406FB5: jbe      0x406fe1
+00406FB7: call     0x4041d0
+00406FBC: call     0x750ec0
+00406FC1: call     0x752760
+00406FC6: mov      ecx, 0xa83d10
+00406FCB: call     0x7209d0
+00406FD0: call     0x7b84d0
+00406FD5: mov      dword ptr [0x87e760], esi
+00406FDB: mov      dword ptr [0x87e764], edi
+00406FE1: pop      edi
+00406FE2: mov      dword ptr [0x87e75c], 0
+00406FEC: pop      esi
+00406FED: add      esp, 8
+00406FF0: ret      
+
+gamemd.exe: SHA256=3e81a61775d2745d1dabe397325ef663cd994ffc194da4e998e3bf5d2d308600, image base=0x400000
+00409360: sub      esp, 8
+00409363: lea      eax, [esp]
+00409367: push     eax
+00409368: call     dword ptr [0x7e11d8]
+0040936E: test     eax, eax
+00409370: je       0x4093a1
+00409372: mov      ecx, dword ptr [esp + 4]
+00409376: mov      edx, dword ptr [esp]
+0040937A: push     0
+0040937C: push     0x3e8
+00409381: push     ecx
+00409382: push     edx
+00409383: call     0x7c92d0
+00409388: mov      dword ptr [0x87e828], eax
+0040938D: mov      dword ptr [0x87e82c], edx
+00409393: mov      dword ptr [0x87e848], 0x4093c0
+0040939D: add      esp, 8
+004093A0: ret      
+004093A1: mov      dword ptr [0x87e848], 0x4093f0
+004093AB: add      esp, 8
+004093AE: ret      
+004093AF: nop      
+004093B0: mov      eax, dword ptr [0x87e848]
+004093B5: test     eax, eax
+004093B7: je       0x4093bb
+004093B9: jmp      eax
+004093BB: xor      eax, eax
+004093BD: xor      edx, edx
+004093BF: ret      
+004093C0: sub      esp, 8
+004093C3: lea      eax, [esp]
+004093C7: push     eax
+004093C8: call     dword ptr [0x7e11d4]
+004093CE: mov      ecx, dword ptr [0x87e82c]
+004093D4: mov      edx, dword ptr [0x87e828]
+004093DA: mov      eax, dword ptr [esp + 4]
+004093DE: push     ecx
+004093DF: mov      ecx, dword ptr [esp + 4]
+004093E3: push     edx
+004093E4: push     eax
+004093E5: push     ecx
+004093E6: call     0x7c92d0
+004093EB: add      esp, 8
+004093EE: ret      
+004093EF: nop      

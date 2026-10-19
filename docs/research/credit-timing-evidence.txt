@@ -1,5 +1,6 @@
 红警2 / 尤里的复仇：ucredup、收入与油井节奏静态核对
 日期：2026-10-19（Asia/Shanghai）
+后续修订：声音请求不会逐次立即启动，原版另有 elapsed >33ms 的音频服务节流；见 credit-audio-service-evidence.txt。
 方法：只读解析用户指定游戏目录的 EXE 与 MIX；未启动游戏、未修改游戏文件。
 
 本机资源核对：

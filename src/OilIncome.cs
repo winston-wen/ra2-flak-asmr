@@ -28,9 +28,13 @@ sealed class OilEconomy {
 
 sealed class OilIncome {
     const int SamplesPerFrame=Mixer.Rate/OilEconomy.FramesPerSecond, BridgeSamples=48;
+    // The original sound manager is serviced only when elapsed integer ms > 33
+    // (RA2 0x406EE2, YR 0x406FB2). Pending requests share its Limit=1 queue.
+    internal const int ServiceSamples=Mixer.Rate*34/1000;
     readonly float[] clip;
     internal readonly OilEconomy Economy=new OilEconomy();
-    int untilTick,position,bridge;
+    int untilTick,untilService=ServiceSamples,position,bridge;
+    bool pending;
     double last,bridgeFrom;
     internal long VoiceStarts;
     internal bool BoundariesZero {get {return clip[0]==0 && clip[clip.Length-1]==0;}}
@@ -53,20 +57,25 @@ sealed class OilIncome {
         Array.Clear(output,0,frames);bool audible=false;int dest=0;
         while(dest<frames) {
             if(playing && untilTick==0) {
-                if(Economy.Tick(wells)) {
+                if(Economy.Tick(wells))pending=true;
+                untilTick=SamplesPerFrame;
+            }
+            if(playing && untilService==0) {
+                if(pending) {
                     // CreditUp Control=interrupt, Limit=1: replace the one voice.
                     // Bridge its last sample over 1 ms to avoid an artificial click.
                     bridgeFrom=last;bridge=0;position=0;VoiceStarts++;
+                    pending=false;
                 }
-                untilTick=SamplesPerFrame;
+                untilService=ServiceSamples;
             }
-            int count=playing?Math.Min(frames-dest,untilTick):frames-dest;
+            int count=playing?Math.Min(frames-dest,Math.Min(untilTick,untilService)):frames-dest;
             for(int n=0;(position<clip.Length || bridge<BridgeSamples) && n<count;n++) {
                 double sample=position<clip.Length?clip[position++]*.1:0;
                 if(bridge<BridgeSamples) {double t=++bridge/(double)BridgeSamples;sample=bridgeFrom*(1-t)+sample*t;}
                 last=sample;output[dest+n]=sample;if(sample!=0)audible=true;
             }
-            dest+=count;if(playing)untilTick-=count;
+            dest+=count;if(playing) {untilTick-=count;untilService-=count;}
         }
         return audible;
     }
