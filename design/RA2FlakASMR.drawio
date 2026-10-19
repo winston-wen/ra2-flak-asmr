@@ -4,8 +4,8 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="frame" value="" tooltip="RA2 Flak ASMR · 300 × 208" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="1">
-          <mxGeometry x="60" y="60" width="300" height="208" as="geometry" />
+        <mxCell id="frame" value="" tooltip="RA2 Flak ASMR · 300 × 236" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="300" height="236" as="geometry" />
         </mxCell>
         <mxCell id="caption" value="" tooltip="标题栏 · 四个 20 × 20 按钮" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="frame">
           <mxGeometry x="4" y="4" width="292" height="26" as="geometry" />
@@ -106,8 +106,20 @@
         <mxCell id="b-std-plus" value="" tooltip="plus / normal" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="b-std">
           <mxGeometry x="60" y="0" width="20" height="20" as="geometry" />
         </mxCell>
+        <mxCell id="oil-label" value="" tooltip="Oil wells · 两端对齐" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="frame">
+          <mxGeometry x="10" y="180" width="64" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count" value="" tooltip="右侧参数" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="frame">
+          <mxGeometry x="210" y="180" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus" value="" tooltip="minus / normal" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="oil-count">
+          <mxGeometry x="36" y="0" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus" value="" tooltip="plus / normal" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="oil-count">
+          <mxGeometry x="60" y="0" width="20" height="20" as="geometry" />
+        </mxCell>
         <mxCell id="volume" value="" tooltip="Volume · 三部分底边对齐" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="frame">
-          <mxGeometry x="10" y="180" width="280" height="16" as="geometry" />
+          <mxGeometry x="10" y="208" width="280" height="16" as="geometry" />
         </mxCell>
         <mxCell id="volume-label" value="" tooltip="Volume · 两端对齐" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="volume">
           <mxGeometry x="0" y="0" width="44" height="16" as="geometry" />
@@ -116,7 +128,7 @@
           <mxGeometry x="50" y="0" width="182" height="16" as="geometry" />
         </mxCell>
         <mxCell id="frame-base" value="" parent="frame" style="rounded=0;shadow=0;fillColor=#626767;strokeColor=#080909;strokeWidth=1;" vertex="1">
-          <mxGeometry x="0" y="0" width="300" height="208" as="geometry" />
+          <mxGeometry x="0" y="0" width="300" height="236" as="geometry" />
         </mxCell>
         <mxCell id="frame-highlight" value="" parent="frame" style="rounded=0;shadow=0;fillColor=none;strokeColor=#D2D4D3;strokeWidth=1;endArrow=none;startArrow=none;edgeStyle=none;rounded=0;" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -127,23 +139,23 @@
         <mxCell id="frame-left-highlight" value="" parent="frame" style="rounded=0;shadow=0;fillColor=none;strokeColor=#A8ACAC;strokeWidth=1;endArrow=none;startArrow=none;edgeStyle=none;rounded=0;" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1" y="1" as="sourcePoint" />
-            <mxPoint x="1" y="206" as="targetPoint" />
+            <mxPoint x="1" y="234" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="frame-right-shadow" value="" parent="frame" style="rounded=0;shadow=0;fillColor=none;strokeColor=#141717;strokeWidth=1.5;endArrow=none;startArrow=none;edgeStyle=none;rounded=0;" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="298" y="1" as="sourcePoint" />
-            <mxPoint x="298" y="206" as="targetPoint" />
+            <mxPoint x="298" y="234" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="frame-bottom-shadow" value="" parent="frame" style="rounded=0;shadow=0;fillColor=none;strokeColor=#141717;strokeWidth=1.5;endArrow=none;startArrow=none;edgeStyle=none;rounded=0;" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1" y="206" as="sourcePoint" />
-            <mxPoint x="298" y="206" as="targetPoint" />
+            <mxPoint x="1" y="234" as="sourcePoint" />
+            <mxPoint x="298" y="234" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="body" value="" parent="frame" style="rounded=0;shadow=0;fillColor=#090606;strokeColor=#040404;strokeWidth=1;" vertex="1">
-          <mxGeometry x="4" y="32" width="292" height="168" as="geometry" />
+          <mxGeometry x="4" y="32" width="292" height="196" as="geometry" />
         </mxCell>
         <mxCell id="caption-plate" value="" parent="caption" style="rounded=0;shadow=0;fillColor=#300000;strokeColor=#040404;strokeWidth=1;" vertex="1">
           <mxGeometry x="0" y="0" width="292" height="26" as="geometry" />
@@ -7135,6 +7147,879 @@
         <mxCell id="b-std-plus-symbol-8-4" value="" parent="b-std-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
           <mxGeometry x="9" y="13" width="1" height="1" as="geometry" />
         </mxCell>
+        <mxCell id="oil-label-char-0" value="O" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="0" y="0" width="7" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-1" value="i" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="9" y="0" width="3" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-2" value="l" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="15" y="0" width="3" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-3" value=" " parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="20" y="0" width="5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-4" value="w" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="28" y="0" width="10" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-5" value="e" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="40" y="0" width="6" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-6" value="l" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="48" y="0" width="3" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-7" value="l" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="54" y="0" width="3" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-8" value="s" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="59" y="0" width="6" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-well" value="" parent="oil-count" style="rounded=0;shadow=0;fillColor=#090000;strokeColor=#E12B0A;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="0" width="32" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-value" value="0" parent="oil-count" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=right;" vertex="1">
+          <mxGeometry x="3" y="0" width="26" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-metal" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#666B68;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="0" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-0-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="2" width="16" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-1-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="3" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-1-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="3" width="14" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-1-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="3" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-2-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-2-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-2-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="4" width="12" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-2-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-2-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-3-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-3-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-3-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-3-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="5" width="10" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-3-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-3-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-3-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="6" width="8" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-5" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="7" width="6" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-11" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-5" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-6" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="8" width="4" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-10" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-11" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-5" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-6" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-7" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#8A1002;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="9" width="2" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-9" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="11" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-10" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-11" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-5" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-6" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-7" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#8A1002;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="10" width="2" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-9" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="11" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-10" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-11" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-5" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-6" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="11" width="4" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-10" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-11" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-5" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="12" width="6" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-11" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="13" width="8" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-12-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-12-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-12-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-12-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="14" width="10" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-12-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-12-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-12-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-13-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-13-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-13-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="15" width="12" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-13-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-13-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-14-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="16" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-14-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="16" width="14" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-14-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="16" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-15-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="17" width="16" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-edge-top" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#B1B5AE;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="0" width="20" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-edge-left" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#B1B5AE;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="0" width="1" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-edge-bottom" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#161919;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="19" width="20" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-edge-right" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#161919;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="19" y="0" width="1" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-edge-inner-bottom" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#393D3D;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="1" y="18" width="18" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-edge-inner-right" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#393D3D;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="18" y="1" width="1" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-symbol-4-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="9" width="9" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-metal" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#666B68;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="0" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-0-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="2" width="16" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-1-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="3" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-1-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="3" width="14" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-1-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="3" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-2-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-2-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-2-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="4" width="12" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-2-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-2-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-3-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-3-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-3-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-3-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="5" width="10" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-3-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-3-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-3-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="6" width="8" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-5" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="7" width="6" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-11" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-5" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-6" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="8" width="4" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-10" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-11" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-5" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-6" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-7" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#8A1002;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="9" width="2" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-9" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="11" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-10" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-11" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-5" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-6" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-7" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#8A1002;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="10" width="2" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-9" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="11" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-10" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-11" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-5" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-6" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="11" width="4" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-10" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-11" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-5" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="12" width="6" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-11" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="13" width="8" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-12-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-12-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-12-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-12-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="14" width="10" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-12-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-12-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-12-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-13-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-13-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-13-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="15" width="12" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-13-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-13-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-14-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="16" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-14-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="16" width="14" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-14-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="16" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-15-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="17" width="16" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-edge-top" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#B1B5AE;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="0" width="20" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-edge-left" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#B1B5AE;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="0" width="1" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-edge-bottom" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#161919;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="19" width="20" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-edge-right" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#161919;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="19" y="0" width="1" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-edge-inner-bottom" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#393D3D;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="1" y="18" width="18" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-edge-inner-right" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#393D3D;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="18" y="1" width="1" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-0-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-1-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-2-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-3-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-4-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="9" width="9" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-5-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-6-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-7-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-8-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
         <mxCell id="volume-label-char-0" value="V" parent="volume-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
           <mxGeometry x="0" y="0" width="8" height="16" as="geometry" />
         </mxCell>
@@ -7337,12 +8222,12 @@
           <mxGeometry x="237" y="0" width="42" height="16" as="geometry" />
         </mxCell>
         <mxCell id="footer-metal" value="" parent="frame" style="rounded=0;shadow=0;fillColor=#353A3C;strokeColor=none;strokeWidth=1;" vertex="1">
-          <mxGeometry x="5" y="201" width="290" height="4" as="geometry" />
+          <mxGeometry x="5" y="229" width="290" height="4" as="geometry" />
         </mxCell>
         <mxCell id="footer-shine" value="" parent="frame" style="rounded=0;shadow=0;fillColor=none;strokeColor=#959A99;strokeWidth=1;endArrow=none;startArrow=none;edgeStyle=none;rounded=0;" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="5" y="201" as="sourcePoint" />
-            <mxPoint x="295" y="201" as="targetPoint" />
+            <mxPoint x="5" y="229" as="sourcePoint" />
+            <mxPoint x="295" y="229" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="cameo-trooper-rim-top" value="" parent="cameo-trooper" style="rounded=0;shadow=0;fillColor=#7E8586;strokeColor=none;strokeWidth=1;" vertex="1">
@@ -7401,8 +8286,8 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="frame" value="" tooltip="RA2 Flak ASMR · 300 × 208" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="1">
-          <mxGeometry x="60" y="60" width="300" height="208" as="geometry" />
+        <mxCell id="frame" value="" tooltip="RA2 Flak ASMR · 300 × 236" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="300" height="236" as="geometry" />
         </mxCell>
         <mxCell id="caption" value="" tooltip="标题栏 · 四个 20 × 20 按钮" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="frame">
           <mxGeometry x="4" y="4" width="292" height="26" as="geometry" />
@@ -7503,8 +8388,20 @@
         <mxCell id="b-std-plus" value="" tooltip="plus / normal" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="b-std">
           <mxGeometry x="60" y="0" width="20" height="20" as="geometry" />
         </mxCell>
+        <mxCell id="oil-label" value="" tooltip="Oil wells · 两端对齐" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="frame">
+          <mxGeometry x="10" y="180" width="64" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count" value="" tooltip="右侧参数" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="frame">
+          <mxGeometry x="210" y="180" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus" value="" tooltip="minus / normal" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="oil-count">
+          <mxGeometry x="36" y="0" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus" value="" tooltip="plus / normal" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="oil-count">
+          <mxGeometry x="60" y="0" width="20" height="20" as="geometry" />
+        </mxCell>
         <mxCell id="volume" value="" tooltip="Volume · 三部分底边对齐" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="frame">
-          <mxGeometry x="10" y="180" width="280" height="16" as="geometry" />
+          <mxGeometry x="10" y="208" width="280" height="16" as="geometry" />
         </mxCell>
         <mxCell id="volume-label" value="" tooltip="Volume · 两端对齐" style="group;connectable=0;recursiveResize=1;" vertex="1" parent="volume">
           <mxGeometry x="0" y="0" width="44" height="16" as="geometry" />
@@ -7513,7 +8410,7 @@
           <mxGeometry x="50" y="0" width="182" height="16" as="geometry" />
         </mxCell>
         <mxCell id="frame-base" value="" parent="frame" style="rounded=0;shadow=0;fillColor=#626767;strokeColor=#080909;strokeWidth=1;" vertex="1">
-          <mxGeometry x="0" y="0" width="300" height="208" as="geometry" />
+          <mxGeometry x="0" y="0" width="300" height="236" as="geometry" />
         </mxCell>
         <mxCell id="frame-highlight" value="" parent="frame" style="rounded=0;shadow=0;fillColor=none;strokeColor=#D2D4D3;strokeWidth=1;endArrow=none;startArrow=none;edgeStyle=none;rounded=0;" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -7524,23 +8421,23 @@
         <mxCell id="frame-left-highlight" value="" parent="frame" style="rounded=0;shadow=0;fillColor=none;strokeColor=#A8ACAC;strokeWidth=1;endArrow=none;startArrow=none;edgeStyle=none;rounded=0;" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1" y="1" as="sourcePoint" />
-            <mxPoint x="1" y="206" as="targetPoint" />
+            <mxPoint x="1" y="234" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="frame-right-shadow" value="" parent="frame" style="rounded=0;shadow=0;fillColor=none;strokeColor=#141717;strokeWidth=1.5;endArrow=none;startArrow=none;edgeStyle=none;rounded=0;" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="298" y="1" as="sourcePoint" />
-            <mxPoint x="298" y="206" as="targetPoint" />
+            <mxPoint x="298" y="234" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="frame-bottom-shadow" value="" parent="frame" style="rounded=0;shadow=0;fillColor=none;strokeColor=#141717;strokeWidth=1.5;endArrow=none;startArrow=none;edgeStyle=none;rounded=0;" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1" y="206" as="sourcePoint" />
-            <mxPoint x="298" y="206" as="targetPoint" />
+            <mxPoint x="1" y="234" as="sourcePoint" />
+            <mxPoint x="298" y="234" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="body" value="" parent="frame" style="rounded=0;shadow=0;fillColor=#090606;strokeColor=#040404;strokeWidth=1;" vertex="1">
-          <mxGeometry x="4" y="32" width="292" height="168" as="geometry" />
+          <mxGeometry x="4" y="32" width="292" height="196" as="geometry" />
         </mxCell>
         <mxCell id="caption-plate" value="" parent="caption" style="rounded=0;shadow=0;fillColor=#300000;strokeColor=#040404;strokeWidth=1;" vertex="1">
           <mxGeometry x="0" y="0" width="292" height="26" as="geometry" />
@@ -14532,6 +15429,879 @@
         <mxCell id="b-std-plus-symbol-8-4" value="" parent="b-std-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
           <mxGeometry x="9" y="13" width="1" height="1" as="geometry" />
         </mxCell>
+        <mxCell id="oil-label-char-0" value="O" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="0" y="0" width="7" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-1" value="i" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="9" y="0" width="3" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-2" value="l" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="15" y="0" width="3" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-3" value=" " parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="20" y="0" width="5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-4" value="w" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="28" y="0" width="10" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-5" value="e" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="40" y="0" width="6" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-6" value="l" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="48" y="0" width="3" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-7" value="l" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="54" y="0" width="3" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-label-char-8" value="s" parent="oil-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
+          <mxGeometry x="59" y="0" width="6" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-well" value="" parent="oil-count" style="rounded=0;shadow=0;fillColor=#090000;strokeColor=#E12B0A;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="0" width="32" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-value" value="0" parent="oil-count" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=right;" vertex="1">
+          <mxGeometry x="3" y="0" width="26" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-metal" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#666B68;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="0" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-0-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="2" width="16" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-1-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="3" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-1-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="3" width="14" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-1-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="3" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-2-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-2-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-2-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="4" width="12" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-2-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-2-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-3-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-3-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-3-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-3-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="5" width="10" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-3-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-3-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-3-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="6" width="8" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-4-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-5" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="7" width="6" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-11" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-5-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-5" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-6" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="8" width="4" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-10" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-11" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-6-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-5" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-6" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-7" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#8A1002;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="9" width="2" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-9" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="11" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-10" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-11" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-7-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-5" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-6" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-7" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#8A1002;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="10" width="2" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-9" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="11" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-10" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-11" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-8-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-5" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-6" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="11" width="4" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-10" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-11" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-9-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-5" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="12" width="6" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-11" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-10-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-4" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="13" width="8" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-12" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-11-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-12-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-12-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-12-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-12-3" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="14" width="10" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-12-13" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-12-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-12-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-13-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-13-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-13-2" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="15" width="12" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-13-14" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-13-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-14-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="16" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-14-1" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="16" width="14" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-14-15" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="16" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-face-15-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="17" width="16" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-edge-top" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#B1B5AE;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="0" width="20" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-edge-left" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#B1B5AE;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="0" width="1" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-edge-bottom" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#161919;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="19" width="20" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-edge-right" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#161919;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="19" y="0" width="1" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-edge-inner-bottom" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#393D3D;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="1" y="18" width="18" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-edge-inner-right" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#393D3D;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="18" y="1" width="1" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-minus-symbol-4-0" value="" parent="oil-count-minus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="9" width="9" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-metal" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#666B68;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="0" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-0-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="2" width="16" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-1-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="3" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-1-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="3" width="14" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-1-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="3" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-2-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-2-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-2-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="4" width="12" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-2-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-2-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="4" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-3-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-3-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-3-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-3-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="5" width="10" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-3-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-3-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-3-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="6" width="8" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-4-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-5" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="7" width="6" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-11" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-5-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-5" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-6" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="8" width="4" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-10" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-11" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-6-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-5" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-6" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-7" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#8A1002;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="9" width="2" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-9" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="11" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-10" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-11" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-7-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="9" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-5" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-6" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-7" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#8A1002;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="10" width="2" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-9" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="11" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-10" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-11" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-8-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-5" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-6" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#850F02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="8" y="11" width="4" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-10" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="12" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-11" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-9-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-5" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#7F0E02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="7" y="12" width="6" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-11" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="13" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-10-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#790D02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="6" y="13" width="8" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-12" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="14" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-11-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-12-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-12-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-12-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-12-3" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#6D0C02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="14" width="10" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-12-13" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="15" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-12-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-12-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="14" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-13-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-13-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-13-2" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#620B02;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="4" y="15" width="12" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-13-14" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="16" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-13-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="15" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-14-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="16" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-14-1" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#500801;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="3" y="16" width="14" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-14-15" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="17" y="16" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-face-15-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#0B0000;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="2" y="17" width="16" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-edge-top" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#B1B5AE;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="0" width="20" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-edge-left" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#B1B5AE;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="0" width="1" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-edge-bottom" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#161919;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="0" y="19" width="20" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-edge-right" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#161919;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="19" y="0" width="1" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-edge-inner-bottom" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#393D3D;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="1" y="18" width="18" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-edge-inner-right" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#393D3D;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="18" y="1" width="1" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-0-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="5" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-1-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="6" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-2-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="7" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-3-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="8" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-4-0" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="5" y="9" width="9" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-5-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="10" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-6-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="11" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-7-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="12" width="1" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oil-count-plus-symbol-8-4" value="" parent="oil-count-plus" style="rounded=0;shadow=0;fillColor=#FFE073;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="9" y="13" width="1" height="1" as="geometry" />
+        </mxCell>
         <mxCell id="volume-label-char-0" value="V" parent="volume-label" style="text;html=0;whiteSpace=nowrap;overflow=visible;strokeColor=none;fillColor=none;spacing=0;verticalAlign=middle;fontColor=#FFFF00;fontFamily=Westwood Improved Preview;fontSize=16;align=left;" vertex="1">
           <mxGeometry x="0" y="0" width="8" height="16" as="geometry" />
         </mxCell>
@@ -14734,12 +16504,12 @@
           <mxGeometry x="237" y="0" width="42" height="16" as="geometry" />
         </mxCell>
         <mxCell id="footer-metal" value="" parent="frame" style="rounded=0;shadow=0;fillColor=#353A3C;strokeColor=none;strokeWidth=1;" vertex="1">
-          <mxGeometry x="5" y="201" width="290" height="4" as="geometry" />
+          <mxGeometry x="5" y="229" width="290" height="4" as="geometry" />
         </mxCell>
         <mxCell id="footer-shine" value="" parent="frame" style="rounded=0;shadow=0;fillColor=none;strokeColor=#959A99;strokeWidth=1;endArrow=none;startArrow=none;edgeStyle=none;rounded=0;" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="5" y="201" as="sourcePoint" />
-            <mxPoint x="295" y="201" as="targetPoint" />
+            <mxPoint x="5" y="229" as="sourcePoint" />
+            <mxPoint x="295" y="229" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="cameo-trooper-rim-top" value="" parent="cameo-trooper" style="rounded=0;shadow=0;fillColor=#7E8586;strokeColor=none;strokeWidth=1;" vertex="1">

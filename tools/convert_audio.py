@@ -28,3 +28,6 @@ for path in sorted(args.source.glob('*.ogg')):
     report.append(dict(file=path.name,samples=len(pcm),duration=len(pcm)/48000,boundary=[int(pcm[0]),int(pcm[-1])]))
 if len(report)!=8:raise SystemExit(f'Expected 8 OGG files; converted {len(report)}.')
 print(json.dumps(report,indent=2))
+
+from convert_credit_audio import convert
+convert(ROOT)

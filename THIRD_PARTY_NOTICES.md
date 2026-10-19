@@ -12,6 +12,8 @@
 
 ## 游戏音效与单位图像
 
-项目中的 Red Alert 2 / 红色警戒 2 音效、单位图像及衍生应用图标来源于用户提供的游戏素材，相关权利归 Westwood / Electronic Arts 及对应原权利人所有。OGG 原件保存在 `assets/audio/original/`，处理后的 PCM 保存于 `assets/audio/`。
+项目中的 Red Alert 2 / 红色警戒 2 音效、单位图像及衍生应用图标主要来源于用户提供的游戏素材，相关权利归 Westwood / Electronic Arts 及对应原权利人所有。防空炮 OGG 原件及进账声 WAV 原件保存在 `assets/audio/original/`，处理后的 PCM 保存于 `assets/audio/`。
 
 本项目未获得上述游戏素材的额外许可，不将其重新授权为其他许可证。本项目与 Electronic Arts 无直接隶属关系。字体许可只适用于相应字体，不覆盖游戏素材或其他项目文件。
+
+`ucredup.wav` 来自 CnCNet 社区公开的 [In-game audio database + transcript](https://forums.cncnet.org/topic/12109-in-game-audio-database-transcript/) 所链接的 RA2 Game Sounds 音效档案，条目 `RA2 Game Sounds/ucredup.wav`。原件为 22050 Hz 单声道 16-bit PCM，809 个样本；游戏音效权利归原权利人。应用内版本转为 48000 Hz 并加入 1 ms 边缘过渡，保留原音量幅度。

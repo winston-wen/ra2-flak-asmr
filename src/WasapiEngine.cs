@@ -98,7 +98,7 @@ sealed class AudioEngine : IDisposable {
     public void Dispose() {
         if(disposed)return;disposed=true;
         Settings c=Mixer.Config;
-        Mixer.Config=new Settings(c.B,c.V,c.IntervalB,c.IntervalV,c.StdB,c.StdV,c.Width,c.Volume,false,c.Volley);
+        Mixer.Config=new Settings(c.B,c.V,c.IntervalB,c.IntervalV,c.StdB,c.StdV,c.Width,c.Volume,false,c.Volley,c.OilWells);
         if(thread!=null && thread.IsAlive) {
             Thread.Sleep(180);exit=true;serviceSignal.Set();
             // Handles and COM objects stay alive until the audio thread releases them.

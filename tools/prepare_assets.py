@@ -15,7 +15,7 @@ layout.validate_layout(scene)
 dynamic={r['key'] for r in scene.state_records}
 scene.items=[it for it in scene.items if it.get('group') not in dynamic
              and not it['id'].endswith('-value') and it['id']!='volume-readout']
-pixel.render(scene,assets/'panel.png',scale=1,canvas=(300,208))
+pixel.render(scene,assets/'panel.png',scale=1,canvas=(300,236))
 
 temp=ROOT/'build/tile.png'
 temp.parent.mkdir(parents=True,exist_ok=True)

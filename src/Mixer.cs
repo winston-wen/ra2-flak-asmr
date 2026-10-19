@@ -14,14 +14,15 @@ sealed class Mixer {
     int voiceCount; long clock; bool wasPlaying, wasVolley;
     bool hasNormal;double spareNormal;
     double master, normalization=1, width=.7;
-    double[] left,right;
+    double[] left,right,oilBus;
+    internal readonly OilIncome Oil=new OilIncome();
     double[][] envelope;
     int capacity;
     const double UnitStep=1.0/720, MasterStep=1.0/576, NormStep=1.0/2400;
     const double Settle=1e-12, TailCutoff=1e-5;
     public void Reserve(int frames) {
         if(frames<=capacity)return;
-        capacity=Math.Max(frames,2048);left=new double[capacity];right=new double[capacity];
+        capacity=Math.Max(frames,2048);left=new double[capacity];right=new double[capacity];oilBus=new double[capacity];
         envelope=new double[64][];for(int i=0;i<64;i++)envelope[i]=new double[capacity];
     }
     public volatile float Peak;
@@ -77,7 +78,7 @@ sealed class Mixer {
     public bool BoundariesZero() {
         foreach(float[][] group in clips) foreach(float[] clip in group)
             if(clip[0]!=0 || clip[clip.Length-1]!=0) return false;
-        return true;
+        return Oil.BoundariesZero;
     }
     void Shot(int index,long start,int count) {
         if(voiceCount==voices.Length) return;
@@ -140,7 +141,8 @@ sealed class Mixer {
         PrepareEnvelopes(frames);
         double targetMaster=c.Playing?c.Volume/100.0:0;
         double targetNorm=.7/Math.Sqrt(Math.Max(1,total));
-        if(voiceCount==0) {
+        bool oilAudible=Oil.Render(oilBus,frames,c.OilWells,c.Playing);
+        if(voiceCount==0 && !oilAudible) {
             // Exact closed form of the same one-pole envelope over a silent block.
             master=Settled(targetMaster+(master-targetMaster)*Math.Pow(1-MasterStep,frames),targetMaster);
             normalization=Settled(targetNorm+(normalization-targetNorm)*Math.Pow(1-NormStep,frames),targetNorm);
@@ -175,7 +177,7 @@ sealed class Mixer {
         for(int n=0;n<frames;n++) {
             master=Settled(master+(targetMaster-master)*MasterStep,targetMaster);
             normalization=Settled(normalization+(targetNorm-normalization)*NormStep,targetNorm);
-            double l=Limit(left[n]*normalization*master),r=Limit(right[n]*normalization*master);
+            double l=Limit((left[n]*normalization+oilBus[n])*master),r=Limit((right[n]*normalization+oilBus[n])*master);
             output[n*2]=(short)Math.Round(l*32767);output[n*2+1]=(short)Math.Round(r*32767);
             peak=Math.Max(peak,(float)Math.Max(Math.Abs(l),Math.Abs(r)));
         }

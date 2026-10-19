@@ -154,13 +154,13 @@ class Scene:
         self.text('volume-readout', '30%', 247, 172, 42, 16, 16, '#FFFF00', FAMILY, 'center', 'volume')
 
     def _build(self):
-        self.group('frame', 0, 0, 300, 208, label='RA2 Flak ASMR · 300 × 208')
-        self.rect('frame-base', 0, 0, 300, 208, '#626767', '#080909', 1, 'frame')
+        self.group('frame', 0, 0, 300, 236, label='RA2 Flak ASMR · 300 × 236')
+        self.rect('frame-base', 0, 0, 300, 236, '#626767', '#080909', 1, 'frame')
         self.line('frame-highlight', 1, 1, 298, 1, '#D2D4D3', 1, 'frame')
-        self.line('frame-left-highlight', 1, 1, 1, 206, '#A8ACAC', 1, 'frame')
-        self.line('frame-right-shadow', 298, 1, 298, 206, '#141717', 1.5, 'frame')
-        self.line('frame-bottom-shadow', 1, 206, 298, 206, '#141717', 1.5, 'frame')
-        self.rect('body', 4, 32, 292, 168, '#090606', '#040404', 1, 'frame')
+        self.line('frame-left-highlight', 1, 1, 1, 234, '#A8ACAC', 1, 'frame')
+        self.line('frame-right-shadow', 298, 1, 298, 234, '#141717', 1.5, 'frame')
+        self.line('frame-bottom-shadow', 1, 234, 298, 234, '#141717', 1.5, 'frame')
+        self.rect('body', 4, 32, 292, 196, '#090606', '#040404', 1, 'frame')
         self.group('caption', 4, 4, 292, 26, 'frame', '标题栏 · 四个 20 × 20 按钮')
         self.rect('caption-plate', 4, 4, 292, 26, '#300000', '#040404', 1, 'caption')
         self.line('caption-red-edge', 5, 5, 294, 5, '#8B1609', 1, 'caption')
@@ -180,17 +180,18 @@ class Scene:
                 y = 96 + row * 28
                 self.justified_label(('left' if side == 'v' else 'right') + '-label-' + name, label, label_x, y)
                 self.field(side, name, field_x, y, value)
+        self.justified_label("oil-label", "Oil wells", 10, 180, 64, 20)
+        self.field("oil", "count", 210, 180, 0)
         start = len(self.items)
         groups_before = set(self.groups)
-        labels_before = len(self.label_layouts)
         self.volume()
         for it in self.items[start:]:
-            it['y'] += 8
+            it['y'] += 36
         for key in set(self.groups) - groups_before:
             x, y, w, h, parent, label = self.groups[key]
-            self.groups[key] = (x, y + 8, w, h, parent, label)
-        self.rect('footer-metal', 5, 201, 290, 4, '#353A3C', None, group='frame')
-        self.line('footer-shine', 5, 201, 295, 201, '#959A99', 1, 'frame')
+            self.groups[key] = (x, y + 36, w, h, parent, label)
+        self.rect('footer-metal', 5, 229, 290, 4, '#353A3C', None, group='frame')
+        self.line('footer-shine', 5, 229, 295, 229, '#959A99', 1, 'frame')
         return self
 
     def build(self):
@@ -306,9 +307,9 @@ def validate_layout(s):
     value = byid['volume-value-frame']
     assert value['x'] == s.groups['b-num-minus'][0] == s.groups['b-itv-minus'][0] == s.groups['b-std-minus'][0] == 246
     assert value['x'] - (track[0] + track[2]) == 4
-    assert label[1] + label[3] == track[1] + track[3] == value['y'] + value['h'] == 196
+    assert label[1] + label[3] == track[1] + track[3] == value['y'] + value['h'] == 224
     label_ink_bottom = max((glyph_bounds(it)[3] for it in s.items if it['id'].startswith('volume-label-char-')))
-    assert label_ink_bottom == glyph_bounds(byid['volume-readout'])[3] == 193
+    assert label_ink_bottom == glyph_bounds(byid['volume-readout'])[3] == 221
     body = byid['body']
     top_gap = byid['cameo-trooper-image']['y'] - body['y']
     bottom_gap = body['y'] + body['h'] - (track[1] + track[3])
@@ -320,4 +321,4 @@ def validate_layout(s):
     buttons = [s.groups['transport-' + kind] for kind in ('play', 'pause', 'minimize', 'close')]
     assert all((b[0] - (a[0] + a[2]) == 4 for a, b in zip(buttons, buttons[1:])))
     assert buttons[-1][0] + buttons[-1][2] == 294
-    return dict(side_margin=10, stepper_gap=4, volume_bottom=196, volume_glyph_bottom=193, icon_top=36, body_top=32, body_bottom=200, vertical_padding=4)
+    return dict(side_margin=10, stepper_gap=4, volume_bottom=224, volume_glyph_bottom=221, icon_top=36, body_top=32, body_bottom=228, vertical_padding=4)

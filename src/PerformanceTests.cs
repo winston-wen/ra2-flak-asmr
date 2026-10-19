@@ -13,7 +13,7 @@ static class PerformanceTests {
         try {
             var queue=new List<double>();var paint=new List<double>();
             using(var audio=new AudioEngine())using(var form=new MainForm(2,true))using(var stop=new ManualResetEvent(false)) {
-                audio.Mixer.Config=new Settings(drag?10:4,10,500,500,50,50,70,0,true,false);
+                audio.Mixer.Config=new Settings(drag?10:4,10,500,500,50,50,70,0,true,false,32);
                 if(drag)form.AttachDiagnosticAudio(audio);
                 form.StartPosition=FormStartPosition.Manual;form.Location=new System.Drawing.Point(-10000,-10000);form.ShowInTaskbar=false;
                 int pending=0,count=0;
@@ -39,7 +39,7 @@ static class PerformanceTests {
                 if(queue.Count<100)throw new Exception("Insufficient UI probe replies");
                 queue.Sort();paint.Sort();
                 string report=string.Format(CultureInfo.InvariantCulture,
-                    "PASS: "+(drag?"20 units / continuous captured synthetic window move + full presentation":"14 units / logical-canvas interaction")+" / 500ms on real WASAPI at zero output volume; {0} UI messages.\r\nUI queue p95={1:F3}ms, p99={2:F3}ms, max={3:F3}ms\r\nUI interaction+paint p95={4:F3}ms, p99={5:F3}ms, max={6:F3}ms\r\n{7}\r\n",
+                    "PASS: "+(drag?"20 units / continuous captured synthetic window move + full presentation":"14 units / logical-canvas interaction")+" + 32 oil wells / 500ms on real WASAPI at zero output volume; {0} UI messages.\r\nUI queue p95={1:F3}ms, p99={2:F3}ms, max={3:F3}ms\r\nUI interaction+paint p95={4:F3}ms, p99={5:F3}ms, max={6:F3}ms\r\n{7}\r\n",
                     queue.Count,queue[(int)(queue.Count*.95)],queue[(int)(queue.Count*.99)],queue[queue.Count-1],
                     paint[(int)(paint.Count*.95)],paint[(int)(paint.Count*.99)],paint[paint.Count-1],audio.Diagnostics());
                 File.WriteAllText(path,report);
@@ -84,6 +84,8 @@ static class PerformanceTests {
             foreach(int frames in new[]{480,1440}) {
                 Mixer m=new Mixer(72491);m.Config=Configuration(4,10,500,true);Advance(m,frames,3);
                 Measure(text,"14 units / 500ms",m,frames,20);
+                m=new Mixer(72491);m.Config=new Settings(10,10,500,500,100,100,70,30,true,false,32);Advance(m,frames,3);
+                Measure(text,"20 flak / 500ms + 32 oil",m,frames,20);
                 m=new Mixer(72491);m.Config=Configuration(32,32,50,true);Advance(m,frames,3);
                 Measure(text,"64 units / 50ms",m,frames,5);
                 m=new Mixer(72491);m.Config=Configuration(32,32,500,true);Advance(m,frames,3);

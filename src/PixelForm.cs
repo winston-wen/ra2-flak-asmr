@@ -59,10 +59,11 @@ static class Resources {
 }
 
 sealed class MainForm : Form {
-    const int LogicalWidth=300,LogicalHeight=208;
+    const int LogicalWidth=300,LogicalHeight=236;
     static readonly Color Gold=Color.FromArgb(255,224,115),Yellow=Color.Yellow;
-    static readonly Rectangle VolumeRect=new Rectangle(60,180,182,16);
+    static readonly Rectangle VolumeRect=new Rectangle(60,208,182,16);
     static readonly int[] CaptionX={202,226,250,274};
+    static readonly int[] EditOrder={0,1,2,3,4,5,7,6};
     readonly int uiScale;
     readonly bool previewOnly;
     bool diagnosticMute;
@@ -72,12 +73,12 @@ sealed class MainForm : Form {
     bool windowDrag;
     Point windowGrabOffset,windowDragOrigin;
     [DllImport("user32.dll")] static extern bool SetWindowPos(IntPtr window,IntPtr after,int x,int y,int width,int height,uint flags);
-    readonly int[] values={2,500,50,3,500,50};
+    readonly int[] values={2,500,50,3,500,50,0,0};
     readonly Bitmap panel=Resources.Image("panel.png"),buttons=Resources.Image("buttons.png"),
         rail=Resources.Image("rail.png"),thumb=Resources.Image("thumb.png");
     readonly Bitmap canvas=new Bitmap(LogicalWidth,LogicalHeight);
     readonly PixelFont font=new PixelFont();
-    readonly int[] paintedButtons=new int[16],paintedValues=new int[7];
+    readonly int[] paintedButtons=new int[18],paintedValues=new int[8];
     int paintedEditing=-2,paintedVolume=-1,paintedVolumeState=-1;
     bool canvasReady;
     readonly ToolTip tip=new ToolTip {InitialDelay=450,ReshowDelay=100,AutoPopDelay=6000};
@@ -99,13 +100,13 @@ sealed class MainForm : Form {
         presentation=new Bitmap(ClientSize.Width,ClientSize.Height,System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
         MinimumSize=Size;MaximumSize=Size;StartPosition=FormStartPosition.CenterScreen;
         Text="RA2 Flak ASMR";BackColor=Color.FromArgb(9,6,6);ForeColor=Yellow;
-        AccessibleName=Text;AccessibleDescription="左侧与右侧分别调整单位数量、平均开火间隔和标准差；底部调整音量。空格播放或暂停，Tab 输入数值。";
+        AccessibleName=Text;AccessibleDescription="左侧与右侧分别调整单位数量、平均开火间隔和标准差；油井数量控制进账音；底部调整音量。空格播放或暂停，Tab 输入数值。";
         DoubleBuffered=true;KeyPreview=true;MaximizeBox=false;
         SetStyle(ControlStyles.ResizeRedraw|ControlStyles.UserPaint|ControlStyles.AllPaintingInWmPaint,true);
         using(Stream s=Resources.Open("flak.ico"))Icon=new Icon(s);
         repeat.Tick+=(s,e)=> {
             repeat.Interval=65;
-            if(pressed>=0 && pressed<12 && hover==pressed)Adjust(pressed/2,(pressed%2==1)?1:-1);
+            if(pressed>=0 && pressed<14 && hover==pressed)Adjust(StepField(pressed),(pressed%2==1)?1:-1);
         };
         caretTimer.Tick+=(s,e)=> {if(editing>=0) {caretVisible=!caretVisible;Invalidate();}};
         monitor.Tick+=(s,e)=> {
@@ -123,18 +124,21 @@ sealed class MainForm : Form {
         FormClosed+=(s,e)=> {panel.Dispose();buttons.Dispose();rail.Dispose();thumb.Dispose();canvas.Dispose();presentation.Dispose();if(probeTarget!=null)probeTarget.Dispose();font.Dispose();tip.Dispose();repeat.Dispose();monitor.Dispose();caretTimer.Dispose();};
     }
 
+    static int StepField(int id) {return id<12?id/2:7;}
+    static int StepId(int field) {return field==7?12:field*2;}
     static int Row(int field) {return field%3;}
-    static Rectangle ValueRect(int field) {return field==6?new Rectangle(246,180,44,16):new Rectangle(field<3?60:210,96+Row(field)*28,32,20);}
-    static Rectangle ButtonRect(int field,int direction) {return new Rectangle((field<3?60:210)+(direction>0?60:36),96+Row(field)*28,20,20);}
+    static Rectangle ValueRect(int field) {return field==6?new Rectangle(246,208,44,16):field==7?new Rectangle(210,180,32,20):new Rectangle(field<3?60:210,96+Row(field)*28,32,20);}
+    static Rectangle ButtonRect(int field,int direction) {return new Rectangle((field<3?60:210)+(direction>0?60:36),field==7?180:96+Row(field)*28,20,20);}
     static Rectangle CaptionRect(int index) {return new Rectangle(CaptionX[index],7,20,20);}
     static bool Contains(Rectangle r,PointF p) {return p.X>=r.Left && p.X<r.Right && p.Y>=r.Top && p.Y<r.Bottom;}
     PointF Logical(Point p) {return new PointF(p.X/(float)uiScale,p.Y/(float)uiScale);}
     int Hit(PointF p) {
         for(int i=0;i<4;i++)if(Contains(CaptionRect(i),p))return 100+i;
-        for(int field=0;field<6;field++) {
+        for(int field=0;field<8;field++) {
+            if(field==6)continue;
             if(Contains(ValueRect(field),p))return 300+field;
-            if(Contains(ButtonRect(field,-1),p))return field*2;
-            if(Contains(ButtonRect(field,1),p))return field*2+1;
+            if(Contains(ButtonRect(field,-1),p))return StepId(field);
+            if(Contains(ButtonRect(field,1),p))return StepId(field)+1;
         }
         if(Contains(VolumeRect,p))return 200;
         if(Contains(ValueRect(6),p))return 306;
@@ -147,7 +151,7 @@ sealed class MainForm : Form {
     }
     int ButtonState(int id,bool selected) {return selected || pressed==id?2:hover==id?1:0;}
     void PaintButton(Graphics g,int kind,Rectangle target,int id,bool selected) {
-        int state=ButtonState(id,selected)+(selected?3:0),index=id>=100?id-100+12:id;
+        int state=ButtonState(id,selected)+(selected?3:0),index=id>=100?id-100+14:id;
         if(paintedButtons[index]==state)return;
         g.DrawImage(buttons,target,new Rectangle(kind*20,state*20,20,20),GraphicsUnit.Pixel);
         Damage(target);
@@ -160,7 +164,8 @@ sealed class MainForm : Form {
             g.SmoothingMode=SmoothingMode.None;g.InterpolationMode=InterpolationMode.NearestNeighbor;g.PixelOffsetMode=PixelOffsetMode.Half;
             if(!canvasReady) {g.DrawImageUnscaled(panel,0,0);canvasReady=true;Damage(new Rectangle(0,0,LogicalWidth,LogicalHeight));}
             for(int i=0;i<4;i++)PaintButton(g,i+2,CaptionRect(i),100+i,(i==0 && playing)||(i==1 && !playing));
-            for(int field=0;field<6;field++) {
+            for(int field=0;field<8;field++) {
+                if(field==6)continue;
                 Rectangle r=ValueRect(field);
                 if(paintedValues[field]!=values[field] || editing==field || paintedEditing==field) {
                     Restore(g,r);
@@ -171,20 +176,20 @@ sealed class MainForm : Form {
                     }
                     paintedValues[field]=values[field];
                 }
-                PaintButton(g,1,ButtonRect(field,-1),field*2,false);
-                PaintButton(g,0,ButtonRect(field,1),field*2+1,false);
+                PaintButton(g,1,ButtonRect(field,-1),StepId(field),false);
+                PaintButton(g,0,ButtonRect(field,1),StepId(field)+1,false);
             }
             int state=volumeDrag?2:hover==200?1:0;
             if(paintedVolume!=volume || paintedVolumeState!=state) {
                 g.DrawImage(rail,VolumeRect,new Rectangle(0,0,182,16),GraphicsUnit.Pixel);
                 Damage(VolumeRect);
                 int tx=62+(int)Math.Round(170*volume/100.0);
-                g.DrawImage(thumb,new Rectangle(tx,181,8,14),new Rectangle(0,state*14,8,14),GraphicsUnit.Pixel);
+                g.DrawImage(thumb,new Rectangle(tx,209,8,14),new Rectangle(0,state*14,8,14),GraphicsUnit.Pixel);
                 paintedVolume=volume;paintedVolumeState=state;
             }
             if(paintedValues[6]!=volume || editing==6 || paintedEditing==6) {
                 Restore(g,ValueRect(6));
-                if(editing!=6)TextAt(g,volume+"%",new Rectangle(247,180,42,16),false,true,Yellow);
+                if(editing!=6)TextAt(g,volume+"%",new Rectangle(247,208,42,16),false,true,Yellow);
                 paintedValues[6]=volume;
             }
             if(editing>=0)PaintEditor(g);
@@ -206,19 +211,19 @@ sealed class MainForm : Form {
         e.Graphics.DrawImageUnscaled(presentation,0,0);
     }
     void Publish() {
-        if(engine!=null)engine.Mixer.Config=new Settings(values[3],values[0],values[4],values[1],values[5],values[2],70,diagnosticMute?0:volume,playing,false);
+        if(engine!=null)engine.Mixer.Config=new Settings(values[3],values[0],values[4],values[1],values[5],values[2],70,diagnosticMute?0:volume,playing,false,values[7]);
         Invalidate();
     }
-    Settings CurrentSettings {get {return engine!=null?engine.Mixer.Config:new Settings(values[3],values[0],values[4],values[1],values[5],values[2],70,volume,playing,false);}}
+    Settings CurrentSettings {get {return engine!=null?engine.Mixer.Config:new Settings(values[3],values[0],values[4],values[1],values[5],values[2],70,volume,playing,false,values[7]);}}
     void Play(bool state) {CommitEdit();if(!ready || fault)return;playing=state;Publish();}
     void Adjust(int field,int direction) {
-        int step=field==6?1:Row(field)==0?1:Row(field)==1?10:5;
+        int step=field==6 || field==7?1:Row(field)==0?1:Row(field)==1?10:5;
         SetValue(field,(field==6?volume:values[field])+direction*step);
     }
     void SetValue(int field,int value) {
         if(field==6) {int next=Math.Max(0,Math.Min(100,value));if(volume==next)return;volume=next;}
         else {
-            int row=Row(field),min=row==1?50:0,max=row==0?32:row==1?10000:Math.Min(5000,values[field-1]);
+            int row=field==7?0:Row(field),min=row==1?50:0,max=row==0?32:row==1?10000:Math.Min(5000,values[field-1]);
             int next=Math.Max(min,Math.Min(max,value));if(values[field]==next)return;values[field]=next;
             if(row==1)values[field+1]=Math.Min(values[field+1],next);
         }
@@ -263,16 +268,16 @@ sealed class MainForm : Form {
         if(hit<0 && Contains(new Rectangle(4,4,292,26),p)) {
             tip.Hide(this);windowGrabOffset=e.Location;windowDragOrigin=Location;windowDrag=true;Capture=true;return;
         }
-        if(hit>=300 && hit<=306) {BeginEdit(hit-300);return;}
+        if(hit>=300 && hit<=307) {BeginEdit(hit-300);return;}
         if(hit==200) {
             tip.Hide(this);
             int tx=62+(int)Math.Round(170*volume/100.0);
             dragAnchor=p.X>=tx && p.X<tx+8?p.X-tx:4;
             volumeDrag=true;pressed=hit;Capture=true;SetVolume(p);return;
         }
-        if((hit>=0 && hit<12)||(hit>=100 && hit<104)) {
+        if((hit>=0 && hit<14)||(hit>=100 && hit<104)) {
             pressed=hit;Capture=true;
-            if(hit<12) {Adjust(hit/2,hit%2==1?1:-1);repeat.Interval=350;repeat.Start();}
+            if(hit<14) {Adjust(StepField(hit),hit%2==1?1:-1);repeat.Interval=350;repeat.Start();}
             Invalidate();
         }
     }
@@ -301,11 +306,11 @@ sealed class MainForm : Form {
         int next=Hit(p);if(next==hover)return;
         string help="";
         if(next>=100 && next<104)help=new[]{"播放 · 空格播放/暂停","暂停 · 平滑淡出","最小化","关闭 · 平滑淡出"}[next-100];
-        else if(next>=300 && next<=306) {
+        else if(next>=300 && next<=307) {
             int field=next-300;
-            help=field==6?"音量 0–100% · 点击输入":(field<3?"左侧单位组 · ":"右侧单位组 · ")+new[]{"单位数量 0–32","平均间隔 50–10000 ms；降低时自动截断标准差","标准差不超过均值及 5000 ms；0 为固定节奏"}[Row(field)]+" · 点击输入";
+            help=field==7?"油井数量 0–32；新增油井奖励 1000，每 100 逻辑帧进账 20（60 帧/秒）；共用进账计数器":field==6?"音量 0–100% · 点击输入":(field<3?"左侧单位组 · ":"右侧单位组 · ")+new[]{"单位数量 0–32","平均间隔 50–10000 ms；降低时自动截断标准差","标准差不超过均值及 5000 ms；0 为固定节奏"}[Row(field)]+" · 点击输入";
         }
-        else if(next>=0 && next<12)help="按住连续调整 · 滚轮调整";
+        else if(next>=0 && next<14)help="按住连续调整 · 滚轮调整";
         else if(next==200)help="音量 "+volume+"% · 拖动或滚轮调整";
         else if(Contains(new Rectangle(4,4,292,26),p))help="拖动窗口 · F1 字体信息";
         if(next!=hover) {hover=next;Invalidate();}
@@ -316,8 +321,8 @@ sealed class MainForm : Form {
     protected override void OnMouseWheel(MouseEventArgs e) {
         base.OnMouseWheel(e);PointF p=Logical(e.Location);int direction=Math.Sign(e.Delta);if(direction==0)return;
         CommitEdit();
-        for(int field=0;field<6;field++)if(Contains(new Rectangle(ValueRect(field).X,ValueRect(field).Y,80,20),p)) {Adjust(field,direction);return;}
-        if(Contains(new Rectangle(60,176,230,24),p))SetValue(6,volume+direction*5);
+        for(int field=0;field<8;field++)if(field!=6 && Contains(new Rectangle(ValueRect(field).X,ValueRect(field).Y,80,20),p)) {Adjust(field,direction);return;}
+        if(Contains(new Rectangle(60,204,230,24),p))SetValue(6,volume+direction*5);
     }
     protected override void OnKeyPress(KeyPressEventArgs e) {
         if(editing>=0 && e.KeyChar>='0' && e.KeyChar<='9') {ReplaceSelection(e.KeyChar.ToString());e.Handled=true;}
@@ -329,7 +334,7 @@ sealed class MainForm : Form {
         if(editing>=0) {
             if(key==Keys.Enter) {CommitEdit();return true;}
             if(key==Keys.Escape) {EndEdit();return true;}
-            if(key==Keys.Tab || key==(Keys.Shift|Keys.Tab)) {int next=(editing+(key==Keys.Tab?1:6))%7;CommitEdit();BeginEdit(next);return true;}
+            if(key==Keys.Tab || key==(Keys.Shift|Keys.Tab)) {int next=(Array.IndexOf(EditOrder,editing)+(key==Keys.Tab?1:7))%8;CommitEdit();BeginEdit(EditOrder[next]);return true;}
             if(key==(Keys.Control|Keys.A)) {anchor=0;caret=editText.Length;Invalidate();return true;}
             if(key==(Keys.Control|Keys.C)) {if(anchor!=caret)Clipboard.SetText(editText.Substring(Math.Min(caret,anchor),Math.Abs(caret-anchor)));return true;}
             if(key==(Keys.Control|Keys.V)) {
@@ -402,15 +407,15 @@ sealed class MainForm : Form {
         int old=values[0];MouseClickAt(125,104);Require(values[0]==old+1,"Plus hit");
         MouseClickAt(105,104);Require(values[0]==old,"Minus hit");
         Require(Hit(new PointF(94,104))==-1 && Hit(new PointF(118,104))==-1,"Stepper gaps");
-        Point start=PhysicalPoint(66,186),end=PhysicalPoint(236,186);
+        Point start=PhysicalPoint(66,214),end=PhysicalPoint(236,214);
         OnMouseDown(new MouseEventArgs(MouseButtons.Left,1,start.X,start.Y,0));
         OnMouseMove(new MouseEventArgs(MouseButtons.Left,0,end.X,end.Y,0));
         OnMouseUp(new MouseEventArgs(MouseButtons.Left,1,end.X,end.Y,0));Require(volume==100,"Horizontal volume drag");
-        dragAnchor=4;SetVolume(new PointF(66,186));Require(volume==0,"Volume lower endpoint");
+        dragAnchor=4;SetVolume(new PointF(66,214));Require(volume==0,"Volume lower endpoint");
         MouseClickAt(70,104);Require(editing==0,"Value click opens editor");
         OnKeyPress(new KeyPressEventArgs('9'));Message msg=new Message();ProcessCmdKey(ref msg,Keys.Enter);Require(values[0]==9,"Typed field commit");
         BeginEdit(0);OnKeyPress(new KeyPressEventArgs('1'));ProcessCmdKey(ref msg,Keys.Escape);Require(values[0]==9,"Escape cancels edit");
-        MouseClickAt(268,188);Require(editing==6,"Volume numeric editor hit");
+        MouseClickAt(268,216);Require(editing==6,"Volume numeric editor hit");
         OnKeyPress(new KeyPressEventArgs('4'));OnKeyPress(new KeyPressEventArgs('2'));ProcessCmdKey(ref msg,Keys.Enter);Require(volume==42,"Typed volume");
         SetValue(6,0);SetValue(3,100);SetValue(1,0);Require(values[3]==32 && values[1]==50,"Value bounds");
         foreach(int mean in new[]{1,4}) {
@@ -420,11 +425,15 @@ sealed class MainForm : Form {
             BeginEdit(mean+1);editText="9999";CommitEdit();Require(values[mean+1]==700,"Typed std capped");
             BeginEdit(mean);editText="50";CommitEdit();Require(values[mean+1]==50,"Typed mean truncates std");
         }
+        SetValue(7,99);Require(CurrentSettings.OilWells==32,"Oil count limit");MouseClickAt(255,188);Require(CurrentSettings.OilWells==31,"Oil minus");MouseClickAt(280,188);Require(CurrentSettings.OilWells==32,"Oil plus");
+        BeginEdit(7);editText="4";CommitEdit();Require(CurrentSettings.OilWells==4,"Oil numeric input");RequireFullRepaintMatches();
+        BeginEdit(5);ProcessCmdKey(ref msg,Keys.Tab);Require(editing==7,"Tab enters oil before volume");
+        ProcessCmdKey(ref msg,Keys.Tab);Require(editing==6,"Tab enters volume last");ProcessCmdKey(ref msg,Keys.Shift|Keys.Tab);Require(editing==7,"Reverse tab enters oil");CommitEdit();
         Settings capped=new Settings(1,1,100,200,500,-10,70,0,false,false);
         Require(capped.StdB==100 && capped.StdV==0,"Immutable settings defend explicit std limits");
         capped=new Settings(1,1,100,200,1000,70,0,false,false);
         Require(capped.StdB==100 && capped.StdV==200,"Legacy settings defend std limits");
-        for(int field=0;field<7;field++) {
+        for(int field=0;field<8;field++) {
             bool wasPlaying=playing;BeginEdit(field);editText=field==6?"42":Row(field)==0?"9":"100";
             Require(ProcessCmdKey(ref msg,Keys.Space) && editing<0 && playing!=wasPlaying,"Space commits and toggles every numeric editor");
         }
@@ -456,7 +465,7 @@ sealed class MainForm : Form {
         Require(engine==null || engine.Error==null,"No audio thread error");
     }
     internal void PreviewTransport(bool state) {volume=0;Play(state);volume=30;hover=pressed=-1;Invalidate();}
-    internal void AttachDiagnosticAudio(AudioEngine audio) {engine=audio;diagnosticMute=true;values[0]=values[3]=10;values[1]=values[4]=500;values[2]=values[5]=50;volume=0;playing=true;}
+    internal void AttachDiagnosticAudio(AudioEngine audio) {engine=audio;diagnosticMute=true;values[0]=values[3]=10;values[1]=values[4]=500;values[2]=values[5]=50;values[7]=32;volume=0;playing=true;}
     internal double DragProbe(int sequence) {
         if(probeTarget==null)probeTarget=new Bitmap(ClientSize.Width,ClientSize.Height);
         Point grab=PhysicalPoint(50,15);
