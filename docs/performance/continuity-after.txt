@@ -1,0 +1,6 @@
+PASS
+8 embedded clips decoded; boundaries zero
+Normal timing distribution: 300/50 ms and 200/20 ms; std=0 fixed timing
+Idle, 64 units at 100 ms and 50 ms, no PCM clipping, remove units, volley, stop fade, 50 restart cycles
+10 s stress rendering: 0.580 s; peak=31998; shots=10356
+600 s virtual playback, both columns 10/500/100: longest exact PCM silence=2.417 ms; shots=23997

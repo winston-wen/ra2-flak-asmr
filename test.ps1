@@ -48,6 +48,9 @@ if ($Device) {
     $flakDeviceReport = Join-Path $flakReports 'device.txt'
     Invoke-FlakProcess @('--device-test',$flakDeviceReport)
     Get-Content -LiteralPath $flakDeviceReport | Write-Host
+    $flakNotificationReport = Join-Path $flakReports 'notifications.txt'
+    Invoke-FlakProcess @('--notification-test',$flakNotificationReport)
+    Get-Content -LiteralPath $flakNotificationReport | Write-Host
     Invoke-FlakProcess @('--ui-test',(Join-Path $flakReports 'ui-with-device.txt'))
 }
 Write-Host 'PASS: all checks completed.'

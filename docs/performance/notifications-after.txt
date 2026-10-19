@@ -1,0 +1,1 @@
+PASS: all device notifications intentionally ignored; both columns 10/500/100, zero master; warm frames per second=48000; frames=144960; buffer=1440 frames (30.0 ms); reported latency=0.0 ms; MMCSS=True; buffers=195; max render=3.869 ms; max service gap=20.412 ms; empty-buffer wakes=0; fallback polls=195; service wait=10 ms; error=

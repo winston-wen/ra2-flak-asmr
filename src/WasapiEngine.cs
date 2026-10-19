@@ -9,6 +9,7 @@ namespace FlakASMR {
 sealed class AudioEngine : IDisposable {
     public readonly Mixer Mixer=new Mixer();
     readonly AutoResetEvent signal=new AutoResetEvent(false);
+    readonly AutoResetEvent serviceSignal;
     readonly ManualResetEvent initialized=new ManualResetEvent(false);
     Thread thread; volatile bool exit; bool disposed;
     public volatile string Error;
@@ -16,9 +17,14 @@ sealed class AudioEngine : IDisposable {
     public uint BufferFrames;
     public long DeviceLatency;
     public bool MultimediaScheduling;
-    public long BufferCount,ZeroPaddingWakeups,WaitTimeouts;
+    public long BufferCount,ZeroPaddingWakeups,FallbackPolls;
+    public int ServiceWaitMilliseconds;
     long maxRenderTicks,maxServiceGapTicks;
-    public AudioEngine() {
+    public AudioEngine() : this(false) {}
+    // The separate unsignalled handle exercises actual timeout servicing without
+    // changing the device or injecting faults into other applications.
+    internal AudioEngine(bool ignoreNotifications) {
+        serviceSignal=ignoreNotifications?new AutoResetEvent(false):signal;
         thread=new Thread(Pump) {IsBackground=true,Name="Flak WASAPI",Priority=ThreadPriority.AboveNormal};
         thread.SetApartmentState(ApartmentState.MTA);thread.Start();
         if(!initialized.WaitOne(10000)) {Dispose();throw new InvalidOperationException("音频设备初始化超时。");}
@@ -42,6 +48,9 @@ sealed class AudioEngine : IDisposable {
             // Event callback, automatic PCM conversion and high-quality resampling.
             Check(client.Initialize(0,0x88040000,300000,0,format,IntPtr.Zero));
             Check(client.GetBufferSize(out BufferFrames));Check(client.GetStreamLatency(out DeviceLatency));
+            // A lost/late event must not make a 30 ms buffer wait for 100 ms.
+            // Poll padding within one third of the actual device buffer instead.
+            ServiceWaitMilliseconds=Math.Max(1,Math.Min(10,(int)(BufferFrames*1000L/Mixer.Rate/3)));
             Check(client.SetEventHandle(signal.SafeWaitHandle.DangerousGetHandle()));
             Guid renderId=typeof(IAudioRenderClient).GUID;Check(client.GetService(ref renderId,out renderObject));
             var render=(IAudioRenderClient)renderObject;
@@ -51,7 +60,7 @@ sealed class AudioEngine : IDisposable {
             Check(client.Start());initialized.Set();
             long previousService=Stopwatch.GetTimestamp();
             while(!exit) {
-                if(!signal.WaitOne(100))WaitTimeouts++;
+                if(!serviceSignal.WaitOne(ServiceWaitMilliseconds))FallbackPolls++;
                 if(exit) break;
                 uint padding;Check(client.GetCurrentPadding(out padding));
                 uint frames=BufferFrames-padding;
@@ -81,7 +90,7 @@ sealed class AudioEngine : IDisposable {
         return "frames="+CompletedFrames+"; buffer="+BufferFrames+" frames ("+(BufferFrames*1000.0/Mixer.Rate).ToString("F1")+" ms); reported latency="+(DeviceLatency/10000.0).ToString("F1")+" ms; MMCSS="+MultimediaScheduling+
             "; buffers="+BufferCount+"; max render="+(Interlocked.Read(ref maxRenderTicks)*1000.0/Stopwatch.Frequency).ToString("F3")+
             " ms; max service gap="+(Interlocked.Read(ref maxServiceGapTicks)*1000.0/Stopwatch.Frequency).ToString("F3")+
-            " ms; empty-buffer wakes="+ZeroPaddingWakeups+"; wait timeouts="+WaitTimeouts+"; error="+Error;
+            " ms; empty-buffer wakes="+ZeroPaddingWakeups+"; fallback polls="+FallbackPolls+"; service wait="+ServiceWaitMilliseconds+" ms; error="+Error;
     }
     [DllImport("avrt.dll",CharSet=CharSet.Unicode,SetLastError=true)] static extern IntPtr AvSetMmThreadCharacteristics(string taskName,ref uint taskIndex);
     [DllImport("avrt.dll",SetLastError=true)] [return:MarshalAs(UnmanagedType.Bool)] static extern bool AvSetMmThreadPriority(IntPtr handle,int priority);
@@ -91,10 +100,11 @@ sealed class AudioEngine : IDisposable {
         Settings c=Mixer.Config;
         Mixer.Config=new Settings(c.B,c.V,c.IntervalB,c.IntervalV,c.StdB,c.StdV,c.Width,c.Volume,false,c.Volley);
         if(thread!=null && thread.IsAlive) {
-            Thread.Sleep(180);exit=true;signal.Set();
+            Thread.Sleep(180);exit=true;serviceSignal.Set();
             // Handles and COM objects stay alive until the audio thread releases them.
             thread.Join();
         }
+        if(serviceSignal!=signal)serviceSignal.Dispose();
         signal.Dispose();initialized.Dispose();
     }
     [StructLayout(LayoutKind.Sequential,Pack=2)] struct WaveFormat {public ushort Tag,Channels;public uint Rate,ByteRate;public ushort Align,Bits,Extra;}

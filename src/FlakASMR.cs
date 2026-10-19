@@ -27,6 +27,8 @@ static class Program {
         }
         if(args.Length>0 && args[0]=="--self-test") {SelfTest(args.Length>1?args[1]:"self-test.txt");return;}
         if(args.Length>0 && args[0]=="--device-test") {DeviceTest(args.Length>1?args[1]:"device-test.txt");return;}
+        if(args.Length>0 && args[0]=="--notification-test") {NotificationTest(args.Length>1?args[1]:"notification-test.txt");return;}
+        if(args.Length>0 && args[0]=="--soak-test") {SoakTest(args.Length>1?args[1]:"soak-test.txt");return;}
         Application.EnableVisualStyles();Application.SetCompatibleTextRenderingDefault(false);
         if(args.Length>1 && args[0]=="--ui-test") {
             try {
@@ -81,12 +83,52 @@ static class Program {
             m.Config=new Settings(32,32,50,50,0,0,70,100,true,false);long before=m.Shots;
             for(int i=0;i<48000*3/256;i++) {m.Render(pcm,256);foreach(short v in pcm)Assert(Math.Abs((int)v)<32767,"50 ms clipping");}
             Assert(m.Shots-before>3700,"50 ms scheduling capacity");
-            File.WriteAllText(path,"PASS\r\n8 embedded clips decoded; boundaries zero\r\nNormal timing distribution: 300/50 ms and 200/20 ms; std=0 fixed timing\r\nIdle, 64 units at 100 ms and 50 ms, no PCM clipping, remove units, volley, stop fade, 50 restart cycles\r\n10 s stress rendering: "+stressSeconds.ToString("F3")+" s; peak="+peak+"; shots="+m.Shots+"\r\n");
+            Mixer continuous=new Mixer();continuous.Config=new Settings(10,10,500,500,100,100,70,30,true,false);
+            short[] window=new short[960];long silence=0,maxSilence=0;
+            for(int block=0;block<60000;block++) {
+                continuous.Render(window,480);
+                for(int n=0;n<480;n++) {
+                    silence=window[n*2]==0 && window[n*2+1]==0?silence+1:0;
+                    maxSilence=Math.Max(maxSilence,silence);
+                }
+            }
+            Assert(maxSilence<Mixer.Rate/50,"Unexpected global PCM silence during 10-minute 20-unit playback");
+            Assert(continuous.Shots>23000 && continuous.Shots<25000,"Continuous shot scheduling");
+            File.WriteAllText(path,"PASS\r\n8 embedded clips decoded; boundaries zero\r\nNormal timing distribution: 300/50 ms and 200/20 ms; std=0 fixed timing\r\nIdle, 64 units at 100 ms and 50 ms, no PCM clipping, remove units, volley, stop fade, 50 restart cycles\r\n10 s stress rendering: "+stressSeconds.ToString("F3")+" s; peak="+peak+"; shots="+m.Shots+"\r\n600 s virtual playback, both columns 10/500/100: longest exact PCM silence="+(maxSilence*1000.0/Mixer.Rate).ToString("F3")+" ms; shots="+continuous.Shots+"\r\n");
         } catch(Exception e) {File.WriteAllText(path,"FAIL\r\n"+e);Environment.ExitCode=1;}
     }
     static void DeviceTest(string path) {
         try {using(AudioEngine e=new AudioEngine()) {e.Mixer.Config=new Settings(32,32,100,100,60,100,0,true,false);Thread.Sleep(2000);long first=e.CompletedFrames;Thread.Sleep(1000);long second=e.CompletedFrames-first;Assert(e.Error==null,e.Error);Assert(e.CompletedFrames>48000,"Insufficient completed buffers: "+e.Diagnostics());Assert(second>=44000 && second<=52000,"Output rate mismatch: frames per second="+second);File.WriteAllText(path,"PASS: WASAPI output with 64 units mixed at zero master volume; "+e.Diagnostics()+"; warm frames per second="+second+"\r\n");}}
         catch(Exception e) {File.WriteAllText(path,"FAIL: "+e);Environment.ExitCode=1;}
+    }
+    static void NotificationTest(string path) {
+        try {
+            using(AudioEngine e=new AudioEngine(true)) {
+                e.Mixer.Config=new Settings(10,10,500,500,100,100,70,0,true,false);
+                Thread.Sleep(2000);long first=Interlocked.Read(ref e.CompletedFrames);Thread.Sleep(1000);
+                long rate=Interlocked.Read(ref e.CompletedFrames)-first;
+                Assert(e.Error==null,e.Error);Assert(e.FallbackPolls>0,"Notification fault was not exercised");
+                Assert(rate>=44000 && rate<=52000,"Lost notifications starved output: "+e.Diagnostics());
+                Assert(e.ZeroPaddingWakeups==0,"Audio buffer drained during lost-notification test: "+e.Diagnostics());
+                File.WriteAllText(path,"PASS: all device notifications intentionally ignored; both columns 10/500/100, zero master; warm frames per second="+rate+"; "+e.Diagnostics()+"\r\n");
+            }
+        }catch(Exception e) {File.WriteAllText(path,"FAIL: "+e);Environment.ExitCode=1;}
+    }
+    static void SoakTest(string path) {
+        try {
+            using(AudioEngine e=new AudioEngine()) {
+                e.Mixer.Config=new Settings(10,10,500,500,100,100,70,0,true,false);
+                Stopwatch watch=Stopwatch.StartNew();long previous=0,lastAdvance=0,maxStall=0;
+                while(watch.ElapsedMilliseconds<60000) {
+                    long frames=Interlocked.Read(ref e.CompletedFrames),now=watch.ElapsedMilliseconds;
+                    if(frames!=previous) {maxStall=Math.Max(maxStall,now-lastAdvance);lastAdvance=now;previous=frames;}
+                    Assert(e.Error==null,e.Error);Thread.Sleep(10);
+                }
+                Assert(e.CompletedFrames>=Mixer.Rate*59L,"Sustained playback lost output time: "+e.Diagnostics());
+                Assert(e.ZeroPaddingWakeups==0,"Sustained playback underrun: "+e.Diagnostics());
+                File.WriteAllText(path,"PASS: 60s real WASAPI, both columns 10/500/100, zero master; max observed frame-progress gap="+maxStall+" ms; "+e.Diagnostics()+"\r\n");
+            }
+        }catch(Exception e) {File.WriteAllText(path,"FAIL: "+e);Environment.ExitCode=1;}
     }
 }
 }

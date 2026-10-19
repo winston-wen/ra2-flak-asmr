@@ -1,0 +1,1 @@
+PASS: 60s real WASAPI, both columns 10/500/100, zero master; max observed frame-progress gap=47 ms; frames=2879554; buffer=1440 frames (30.0 ms); reported latency=0.0 ms; MMCSS=True; buffers=5999; max render=2.977 ms; max service gap=34.082 ms; empty-buffer wakes=0; fallback polls=148; service wait=10 ms; error=

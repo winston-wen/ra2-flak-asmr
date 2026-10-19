@@ -1,0 +1,1 @@
+20 units / 500 / 100; all device notifications intentionally ignored; warm frames/s=12960; frames=40320; buffer=1440 frames (30.0 ms); reported latency=0.0 ms; MMCSS=True; buffers=28; max render=3.102 ms; max service gap=109.672 ms; empty-buffer wakes=11; wait timeouts=28; error=
