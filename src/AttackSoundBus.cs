@@ -1,6 +1,16 @@
 using System;
 
 namespace FlakASMR {
+sealed class AttackSoundProfile {
+    internal readonly int MinShift,MaxShift,Volume,VolumeShift;
+    internal AttackSoundProfile(int minShift,int maxShift,int volume,int volumeShift=0) {
+        if(minShift<=-100 || minShift>maxShift || volume<0 || volume>100 || volumeShift<0 || volumeShift>100)
+            throw new ArgumentOutOfRangeException("sound profile");
+        MinShift=minShift;MaxShift=maxShift;Volume=volume;VolumeShift=volumeShift;
+    }
+    // Original FlakCannonAttack / FlakTroopAttackAir. Missing VShift defaults to 0.
+    internal static readonly AttackSoundProfile[] Original={new AttackSoundProfile(-5,5,70),new AttackSoundProfile(-10,10,95)};
+}
 sealed class AttackUnit {
     public bool Enabled,Steady,HasNormal;
     public long Next;
@@ -19,13 +29,15 @@ sealed class AttackSoundBus {
     readonly float[][][] clips;
     readonly AttackUnit[] units;
     readonly Random random;
+    readonly AttackSoundProfile[] profiles;
     struct Request {public int Unit;public long Time;}
     sealed class Voice {
         public bool Active;
-        public int Unit,Position,Bridge;
+        public int Unit,Bridge,FrequencyPercent,VolumeDrop;
+        public long Position; // hundredths of a source sample; exact integer FShift
         public long Start,Order;
         public float[] Clip;
-        public double L,R,LastL,LastR,FromL,FromR;
+        public double L,R,LastL,LastR,FromL,FromR,Gain;
     }
     // Keep the whole batch until service: a later settings snapshot may cancel
     // an early request, in which case the next valid request can still survive.
@@ -39,8 +51,12 @@ sealed class AttackSoundBus {
     internal int ActiveInGroup(int group) {int n=0;for(int i=group*Limit;i<(group+1)*Limit;i++)if(voices[i].Active)n++;return n;}
     internal int ActiveUnit(int slot) {return voices[slot].Active?voices[slot].Unit:-1;}
     internal long ActiveStart(int slot) {return voices[slot].Start;}
-    internal AttackSoundBus(float[][][] source,AttackUnit[] owners,int seed) {
-        clips=source;units=owners;random=new Random(seed);
+    internal int ActiveFrequencyPercent(int slot) {return voices[slot].FrequencyPercent;}
+    internal int ActiveVolumeDrop(int slot) {return voices[slot].VolumeDrop;}
+    internal double ActiveGain(int slot) {return voices[slot].Gain;}
+    internal AttackSoundBus(float[][][] source,AttackUnit[] owners,int seed,AttackSoundProfile[] settings=null) {
+        clips=source;units=owners;random=new Random(seed);profiles=settings??AttackSoundProfile.Original;
+        if(profiles.Length!=2)throw new ArgumentException("Two sound profiles are required");
         for(int i=0;i<voices.Length;i++)voices[i]=new Voice();
     }
     internal void Queue(int unit,long time) {
@@ -80,9 +96,15 @@ sealed class AttackSoundBus {
                 if(voice.Active)Interrupted++;
                 int variant=random.Next(3);if(unit.Last>=0 && variant>=unit.Last)variant++;
                 if(unit.Last<0)variant=random.Next(4);unit.Last=variant;
+                AttackSoundProfile profile=profiles[group];
+                voice.FrequencyPercent=100+(profile.MinShift==profile.MaxShift?profile.MinShift:random.Next(profile.MinShift,profile.MaxShift+1));
+                voice.VolumeDrop=profile.VolumeShift==0?0:random.Next(profile.VolumeShift+1);
+                // YR 0x4054EB: VShift draws 0..VShift and attenuates in Q14.
+                // It does not add a symmetric +/- amplitude modulation.
+                voice.Gain=profile.Volume/100.0*(16384-16384*voice.VolumeDrop/100)/16384.0;
                 double angle=(unit.Pan*width+1)*Math.PI/4;
                 voice.Active=true;voice.Clip=clips[group][variant];voice.Unit=request.Unit;
-                voice.Start=now;voice.Order=order++;voice.Position=voice.Bridge=0;
+                voice.Start=now;voice.Order=order++;voice.Position=0;voice.Bridge=0;
                 voice.L=Math.Cos(angle);voice.R=Math.Sin(angle);Started++;
             }
             pendingCount[group]=0;
@@ -95,10 +117,14 @@ sealed class AttackSoundBus {
             AttackUnit unit=units[voice.Unit];
             if(!unit.Enabled && unit.Steady && unit.Gain==0) {voice.Active=false;continue;}
             active=true;
-            int stop=offset+Math.Min(count,voice.Clip.Length-voice.Position);
+            long remaining=voice.Clip.Length*100L-voice.Position;
+            int stop=offset+(int)Math.Min(count,(remaining+voice.FrequencyPercent-1)/voice.FrequencyPercent);
             for(int n=offset;n<stop;n++) {
                 double gain=unit.Steady?unit.Gain:unit.Envelope[n];
-                double sample=voice.Clip[voice.Position++]*gain;
+                int index=(int)(voice.Position/100);double fraction=voice.Position%100/100.0;
+                double first=voice.Clip[index],second=voice.Clip[Math.Min(index+1,voice.Clip.Length-1)];
+                double sample=(first+(second-first)*fraction)*gain*voice.Gain;
+                voice.Position+=voice.FrequencyPercent;
                 double l=sample*voice.L,r=sample*voice.R;
                 if(voice.Bridge<BridgeSamples) {
                     double t=++voice.Bridge/(double)BridgeSamples;
@@ -106,7 +132,7 @@ sealed class AttackSoundBus {
                 }
                 left[n]+=l;right[n]+=r;voice.LastL=l;voice.LastR=r;
             }
-            if(voice.Position==voice.Clip.Length || (!unit.Enabled && (unit.Steady?unit.Gain:unit.Envelope[offset+count-1])==0)) {
+            if(voice.Position>=voice.Clip.Length*100L || (!unit.Enabled && (unit.Steady?unit.Gain:unit.Envelope[offset+count-1])==0)) {
                 voice.Active=false;voice.LastL=voice.LastR=0;
             }
         }

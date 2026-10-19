@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace FlakASMR {
 static class AttackBatchTests {
+    static readonly AttackSoundProfile[] Neutral={new AttackSoundProfile(0,0,100),new AttackSoundProfile(0,0,100)};
     struct Shot {public int Unit;public int Time;}
     sealed class RefVoice {public int Unit,Start,Order;public double LastL,LastR,FromL,FromR;}
     static void Check(bool condition,string name) {if(!condition)throw new Exception("Attack batch: "+name);}
@@ -67,7 +68,7 @@ static class AttackBatchTests {
     }
     internal static void Run() {
         float[][][] clips=Clips();AttackUnit[] owners=Units();
-        AttackSoundBus batch=new AttackSoundBus(clips,owners,19);
+        AttackSoundBus batch=new AttackSoundBus(clips,owners,19,Neutral);
         for(int i=0;i<32;i++) {batch.Queue(i,32-i);batch.Queue(i+32,i);}
         batch.Service(1632,.7);
         Check(batch.ActiveInGroup(0)==5 && batch.ActiveInGroup(1)==5 && batch.Dropped==54,"independent five-event limits");
@@ -75,7 +76,7 @@ static class AttackBatchTests {
         batch.Queue(10,1700);batch.Queue(11,1701);batch.Service(3264,.7);
         Check(batch.Interrupted==2 && batch.ActiveUnit(0)==10 && batch.ActiveUnit(1)==11,"interrupt replaces oldest playing events");
         Check(batch.ActiveUnit(5)==32,"one event never steals another event's voice");
-        owners=Units();batch=new AttackSoundBus(clips,owners,19);
+        owners=Units();batch=new AttackSoundBus(clips,owners,19,Neutral);
         for(int i=0;i<7;i++)batch.Queue(i,i);
         owners[1].Enabled=false;batch.CancelDisabled();batch.Service(1632,.7);
         Check(batch.Cancelled==1 && batch.Dropped==1 && batch.ActiveUnit(4)==5,"cancelled pending event admits the next valid request");
@@ -88,7 +89,7 @@ static class AttackBatchTests {
         Shot[] trace=Trace();const int length=20000;long expectedStarts,expectedDrops,expectedInterrupts;
         double[][] reference=Reference(trace,clips,Units(),length,out expectedStarts,out expectedDrops,out expectedInterrupts);
         foreach(int block in new[]{1,127,480,1440,4096}) {
-            owners=Units();AttackSoundBus bus=new AttackSoundBus(clips,owners,71);
+            owners=Units();AttackSoundBus bus=new AttackSoundBus(clips,owners,71,Neutral);
             double[] left=new double[block],right=new double[block];int clock=0,next=0;
             while(clock<length) {
                 int frames=Math.Min(block,length-clock),offset=0;Array.Clear(left,0,frames);Array.Clear(right,0,frames);

@@ -1,0 +1,163 @@
+红警2 / 尤里的复仇：FShift、VShift 与基础音量，2026-10-19
+方法：只读核对用户本机原版 EXE / INI；未运行或修改游戏。
+
+当前两类声音：FlakTroopAttackAir / FlakTrackAttackAir 使用 FShift=-10 10、Volume=95；FlakCannonAttack 使用 FShift=-5 5、Volume=70。
+这两类声音均未设置 VShift，默认读取值是0。不要把地面攻击 vflaat1 的 VShift=10 套用到当前对空声音。
+0x75055F push 0：读取 VShift 时的默认值。0x406620 将设置值限制到0..100并存入事件+0x68。
+0x405677：从事件+0x60/+0x64取 FShift 下界/上界，调用整数随机范围后加100，保存在声音实例+0x14C。
+0x405697：在0..VShift之间抽取整数，保存在声音实例+0x150。
+0x4054DD：将随机频率百分比送入声音频率控制器。
+0x4054EB：音量随机量a>0时，用0x4000-floor(0x4000*a/100)作为Q14衰减；不是围绕基础音量正负变化。
+当前正式参数VShift=0：只应用事件基础音量及源素材强弱，不人为添加额外随机音量。
+素材修正：旧版本逐段峰值归一化到0.8，掩盖素材差异；现在8段共用一个峰值余量增益，详见assets/audio/conversion.json。
+生成器用相同整数百分比做固定点变速重采样；没有模拟原游戏DirectSound硬件输出逐位结果或原版随机数种子。
+
+[Defaults]
+MinVolume=50
+Range=10
+Volume=80
+Limit=5
+Type= NORMAL SCREEN UNSHROUD
+Priority=NORMAL
+
+; All sounds in the game are listed here (by name).
+[FlakTroopAttackAir]
+Sounds= vflaat2a vflaat2b vflaat2c vflaat2d
+FShift= -10 10
+Control= random interrupt
+Volume=95
+[FlakTrackAttackAir]
+Sounds= vflaat2a vflaat2b vflaat2c vflaat2d
+FShift= -10 10
+Control= random interrupt
+Volume=95
+[FlakCannonAttack]
+Sounds= bflaatta bflaattb bflaattc bflaattd
+FShift= -5 5
+Control= random interrupt
+Volume= 70
+gamemd.exe: SHA256=3e81a61775d2745d1dabe397325ef663cd994ffc194da4e998e3bf5d2d308600, image base=0x400000
+0075054D: mov      ecx, dword ptr [esi]
+0075054F: test     ecx, ecx
+00750551: je       0x75055a
+00750553: call     0x405170
+00750558: jmp      0x75055f
+0075055A: mov      eax, 0x846574
+0075055F: push     0
+00750561: push     0x846560
+00750566: push     eax
+00750567: mov      ecx, edi
+00750569: call     0x5276d0
+0075056E: mov      ecx, dword ptr [esi]
+00750570: mov      edx, eax
+00750572: call     0x406620
+
+gamemd.exe: SHA256=3e81a61775d2745d1dabe397325ef663cd994ffc194da4e998e3bf5d2d308600, image base=0x400000
+00406620: cmp      edx, 0x64
+00406623: jle      0x40662e
+00406625: mov      eax, 0x64
+0040662A: mov      dword ptr [ecx + 0x68], eax
+0040662D: ret
+0040662E: test     edx, edx
+00406630: jge      0x406638
+00406632: xor      eax, eax
+00406634: mov      dword ptr [ecx + 0x68], eax
+00406637: ret
+00406638: mov      dword ptr [ecx + 0x68], edx
+0040663B: ret
+
+gamemd.exe: SHA256=3e81a61775d2745d1dabe397325ef663cd994ffc194da4e998e3bf5d2d308600, image base=0x400000
+00405677: mov      eax, dword ptr [edi + 0x64]
+0040567A: mov      ecx, dword ptr [edi + 0x60]
+0040567D: push     eax
+0040567E: push     ecx
+0040567F: mov      ecx, 0x886b88
+00405684: call     0x65c7e0
+00405689: add      eax, 0x64
+0040568C: mov      ecx, 0x886b88
+00405691: mov      dword ptr [esi + 0x14c], eax
+00405697: mov      eax, dword ptr [edi + 0x68]
+0040569A: push     eax
+0040569B: push     ebx
+0040569C: call     0x65c7e0
+004056A1: mov      ecx, dword ptr [esi + 0xb0]
+004056A7: mov      dword ptr [esi + 0x150], eax
+
+gamemd.exe: SHA256=3e81a61775d2745d1dabe397325ef663cd994ffc194da4e998e3bf5d2d308600, image base=0x400000
+004054DD: mov      edx, dword ptr [esi + 0x14c]
+004054E3: add      ecx, 0x38
+004054E6: call     0x407150
+004054EB: mov      ecx, dword ptr [esi + 0x150]
+004054F1: mov      edx, 0x4000
+004054F6: test     ecx, ecx
+004054F8: jle      0x405510
+004054FA: shl      ecx, 0xe
+004054FD: mov      eax, 0x51eb851f
+00405502: mul      ecx
+00405504: shr      edx, 5
+00405507: mov      ecx, edx
+00405509: mov      edx, 0x4000
+0040550E: sub      edx, ecx
+00405510: mov      ecx, dword ptr [esi + 0xb0]
+00405516: add      ecx, 0x10
+00405519: call     0x407150
+
+gamemd.exe: SHA256=3e81a61775d2745d1dabe397325ef663cd994ffc194da4e998e3bf5d2d308600, image base=0x400000
+0065C7E0: mov      eax, dword ptr [esp + 4]
+0065C7E4: mov      edx, ecx
+0065C7E6: mov      ecx, dword ptr [esp + 8]
+0065C7EA: push     ebx
+0065C7EB: cmp      eax, ecx
+0065C7ED: mov      ebx, eax
+0065C7EF: je       0x65c889
+0065C7F5: jle      0x65c7fb
+0065C7F7: mov      ebx, ecx
+0065C7F9: mov      ecx, eax
+0065C7FB: push     ebp
+0065C7FC: sub      ecx, ebx
+0065C7FE: push     edi
+0065C7FF: mov      edi, ecx
+0065C801: test     edi, 0x80000000
+0065C807: mov      ecx, 0x1f
+0065C80C: jne      0x65c81e
+0065C80E: test     ecx, ecx
+0065C810: jle      0x65c81e
+0065C812: dec      ecx
+0065C813: mov      eax, 1
+0065C818: shl      eax, cl
+0065C81A: test     edi, eax
+0065C81C: je       0x65c80e
+0065C81E: inc      ecx
+0065C81F: or       ebp, 0xffffffff
+0065C822: shl      ebp, cl
+0065C824: lea      eax, [edi + 1]
+0065C827: cmp      eax, edi
+0065C829: not      ebp
+0065C82B: jle      0x65c885
+0065C82D: push     esi
+0065C82E: cmp      byte ptr [edx], 0
+0065C831: je       0x65c837
+0065C833: xor      eax, eax
+0065C835: jmp      0x65c87e
+0065C837: mov      ecx, dword ptr [edx + 4]
+0065C83A: mov      esi, dword ptr [edx + ecx*4 + 0xc]
+0065C83E: lea      eax, [edx + ecx*4 + 0xc]
+0065C842: mov      ecx, dword ptr [edx + 8]
+0065C845: mov      ecx, dword ptr [edx + ecx*4 + 0xc]
+0065C849: xor      esi, ecx
+0065C84B: mov      dword ptr [eax], esi
+0065C84D: mov      eax, dword ptr [edx + 4]
+0065C850: mov      ecx, dword ptr [edx + 8]
+0065C853: mov      esi, dword ptr [edx + eax*4 + 0xc]
+0065C857: inc      eax
+0065C858: inc      ecx
+0065C859: cmp      eax, 0xfa
+0065C85E: mov      dword ptr [edx + 4], eax
+0065C861: mov      dword ptr [edx + 8], ecx
+0065C864: jl       0x65c86d
+0065C866: mov      dword ptr [edx + 4], 0
+0065C86D: cmp      ecx, 0xfa
+0065C873: jl       0x65c87c
+0065C875: mov      dword ptr [edx + 8], 0
+0065C87C: mov      eax, esi
+0065C87E: and      eax, ebp

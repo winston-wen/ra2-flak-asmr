@@ -25,7 +25,7 @@ Windows x64 single-file executable. Audio, images and bitmap glyphs are embedded
 - Validation: mixer stress tests, numeric controls, hover/pressed hit states and pixel-exact paused/playing screenshots.
 
 Download RA2FlakASMR.exe and run it. Space plays/pauses; click numbers to edit; hold +/- to adjust continuously.
-Oil Derrick (0-32) uses the original 1000 capture bonus, 20 credits per 100 logic frames and one global credit counter / interrupting CreditUp voice. Version 1.2.1: attack requests use original-style 34ms batch servicing and independent Limit=5 per column, with FIFO pending admission and oldest-playing interruption. CreditUp gain is halved and credit display/audio tick intervals are stretched by 1.25x; oil income remains on the original 60Hz economic clock. Pause preserves well timers and never grants another capture bonus.
+Oil Derrick (0-32) uses the original 1000 capture bonus, 20 credits per 100 logic frames and one global credit counter / interrupting CreditUp voice. Version 1.2.1: attack requests use original-style 34ms batch servicing and independent Limit=5 per column, with FIFO pending admission and oldest-playing interruption. Original attack variation: left pitch +/-10% at 95% base volume, right +/-5% at 70%; source loudness differences are preserved. Both original VShift values default to zero, so no extra volume jitter is invented. CreditUp gain is halved and credit display/audio tick intervals are stretched by 1.25x; oil income remains on the original 60Hz economic clock. Pause preserves well timers and never grants another capture bonus.
 See the repository README, docs and third-party notices for usage and resource attribution.
 "@
 [IO.File]::WriteAllText($flakNotes,$flakBody,(New-Object Text.UTF8Encoding($false)))

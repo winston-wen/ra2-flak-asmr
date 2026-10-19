@@ -41,7 +41,7 @@ static class MixerRegression {
             // Zero-width blocks must not advance timing or touch output.
             Mixer empty=new Mixer();short[] sentinel={123,-456};empty.Render(sentinel,0);
             if(sentinel[0]!=123 || sentinel[1]!=-456)throw new Exception("Zero frame block changed output");
-            StartTimingTests.Run();AttackBatchTests.Run();OilIncomeTests.Run();
+            StartTimingTests.Run();AttackBatchTests.Run();AttackVariationTests.Run();OilIncomeTests.Run();
             Console.WriteLine("PASS: "+compared+" PCM samples across callback sizes with 1.2.1 batching; max delta="+maxDifference+" LSB; four block sizes; play/pause, counts, width, volume, distributions, fixed timing and volley.");
             return 0;
         }catch(Exception e) {Console.Error.WriteLine(e);return 1;}

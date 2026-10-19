@@ -1,0 +1,101 @@
+{
+  "common_gain": 0.9619810811234735,
+  "clips": [
+    {
+      "file": "bflaatta.ogg",
+      "samples": 52506,
+      "duration": 1.093875,
+      "boundary": [
+        0,
+        0
+      ],
+      "source_peak": 1.0187310532713207,
+      "common_gain": 0.9619810811234735,
+      "output_peak": 0.9800103762932219
+    },
+    {
+      "file": "bflaattb.ogg",
+      "samples": 49718,
+      "duration": 1.0357916666666667,
+      "boundary": [
+        0,
+        0
+      ],
+      "source_peak": 0.9641062224596937,
+      "common_gain": 0.9619810811234735,
+      "output_peak": 0.9274575029755546
+    },
+    {
+      "file": "bflaattc.ogg",
+      "samples": 62600,
+      "duration": 1.3041666666666667,
+      "boundary": [
+        0,
+        0
+      ],
+      "source_peak": 0.9718790297260064,
+      "common_gain": 0.9619810811234735,
+      "output_peak": 0.934934537797174
+    },
+    {
+      "file": "bflaattd.ogg",
+      "samples": 43912,
+      "duration": 0.9148333333333334,
+      "boundary": [
+        0,
+        0
+      ],
+      "source_peak": 0.9978308245786967,
+      "common_gain": 0.9619810811234735,
+      "output_peak": 0.9598986785485397
+    },
+    {
+      "file": "vflaat2a.ogg",
+      "samples": 35580,
+      "duration": 0.74125,
+      "boundary": [
+        0,
+        0
+      ],
+      "source_peak": 0.9580122892353895,
+      "common_gain": 0.9619810811234735,
+      "output_peak": 0.9215979491561632
+    },
+    {
+      "file": "vflaat2b.ogg",
+      "samples": 35526,
+      "duration": 0.740125,
+      "boundary": [
+        0,
+        0
+      ],
+      "source_peak": 0.7485680543231868,
+      "common_gain": 0.9619810811234735,
+      "output_peak": 0.7201147495956297
+    },
+    {
+      "file": "vflaat2c.ogg",
+      "samples": 37602,
+      "duration": 0.783375,
+      "boundary": [
+        0,
+        0
+      ],
+      "source_peak": 1.0103232020981212,
+      "common_gain": 0.9619810811234735,
+      "output_peak": 0.9719229712820826
+    },
+    {
+      "file": "vflaat2d.ogg",
+      "samples": 30838,
+      "duration": 0.6424583333333334,
+      "boundary": [
+        0,
+        0
+      ],
+      "source_peak": 1.0027193748237344,
+      "common_gain": 0.9619810811234735,
+      "output_peak": 0.9645985290078433
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+PASS: 20 units / continuous captured synthetic window move + full presentation + 32 oil derricks / 500ms on real WASAPI at zero output volume; 517 UI messages.
+UI queue p95=1.278ms, p99=1.822ms, max=19.365ms
+UI interaction+paint p95=1.648ms, p99=1.990ms, max=5.573ms
+frames=395074; buffer=1440 frames (30.0 ms); reported latency=0.0 ms; MMCSS=True; buffers=823; max render=4.034 ms; max service gap=11.220 ms; empty-buffer wakes=0; fallback polls=23; service wait=10 ms; error=
