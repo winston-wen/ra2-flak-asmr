@@ -16493,32 +16493,26 @@
         <mxCell id="pressed-volume-track" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#070000;strokeColor=none;strokeWidth=1;" vertex="1">
           <mxGeometry x="0" y="0" width="90" height="16" as="geometry" />
         </mxCell>
-        <mxCell id="pressed-volume-edge-top" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#161919;strokeColor=none;strokeWidth=1;" vertex="1">
+        <mxCell id="pressed-volume-edge-top" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#B1B5AE;strokeColor=none;strokeWidth=1;" vertex="1">
           <mxGeometry x="0" y="0" width="90" height="1" as="geometry" />
         </mxCell>
-        <mxCell id="pressed-volume-edge-left" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#161919;strokeColor=none;strokeWidth=1;" vertex="1">
+        <mxCell id="pressed-volume-edge-left" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#B1B5AE;strokeColor=none;strokeWidth=1;" vertex="1">
           <mxGeometry x="0" y="0" width="1" height="16" as="geometry" />
         </mxCell>
-        <mxCell id="pressed-volume-edge-bottom" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#B1B5AE;strokeColor=none;strokeWidth=1;" vertex="1">
+        <mxCell id="pressed-volume-edge-bottom" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#161919;strokeColor=none;strokeWidth=1;" vertex="1">
           <mxGeometry x="0" y="15" width="90" height="1" as="geometry" />
         </mxCell>
-        <mxCell id="pressed-volume-edge-right" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#B1B5AE;strokeColor=none;strokeWidth=1;" vertex="1">
+        <mxCell id="pressed-volume-edge-right" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#161919;strokeColor=none;strokeWidth=1;" vertex="1">
           <mxGeometry x="89" y="0" width="1" height="16" as="geometry" />
         </mxCell>
-        <mxCell id="pressed-volume-edge-inset-top" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#030404;strokeColor=none;strokeWidth=1;" vertex="1">
-          <mxGeometry x="1" y="1" width="88" height="1" as="geometry" />
+        <mxCell id="pressed-volume-edge-inner-bottom" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#393D3D;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="1" y="14" width="88" height="1" as="geometry" />
         </mxCell>
-        <mxCell id="pressed-volume-edge-inset-left" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#030404;strokeColor=none;strokeWidth=1;" vertex="1">
-          <mxGeometry x="1" y="1" width="1" height="14" as="geometry" />
+        <mxCell id="pressed-volume-edge-inner-right" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#393D3D;strokeColor=none;strokeWidth=1;" vertex="1">
+          <mxGeometry x="88" y="1" width="1" height="14" as="geometry" />
         </mxCell>
         <mxCell id="pressed-volume-rail-top" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#851400;strokeColor=none;strokeWidth=1;" vertex="1">
           <mxGeometry x="1" y="1" width="88" height="1" as="geometry" />
-        </mxCell>
-        <mxCell id="pressed-volume-pressed-rail-top" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#030000;strokeColor=none;strokeWidth=1;" vertex="1">
-          <mxGeometry x="1" y="1" width="88" height="1" as="geometry" />
-        </mxCell>
-        <mxCell id="pressed-volume-rail-left" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#030000;strokeColor=none;strokeWidth=1;" vertex="1">
-          <mxGeometry x="1" y="1" width="1" height="14" as="geometry" />
         </mxCell>
         <mxCell id="pressed-volume-thumb-base" value="" parent="pressed-volume" style="rounded=0;shadow=0;fillColor=#710B00;strokeColor=none;strokeWidth=1;" vertex="1">
           <mxGeometry x="25" y="1" width="8" height="14" as="geometry" />

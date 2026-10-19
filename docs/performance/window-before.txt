@@ -1,0 +1,4 @@
+PASS: 20 units / synthetic window move + full presentation / 500ms on real WASAPI at zero output volume; 517 UI messages.
+UI queue p95=0.430ms, p99=0.555ms, max=17.326ms
+UI interaction+paint p95=1.261ms, p99=1.520ms, max=4.067ms
+frames=394594; buffer=1440 frames (30.0 ms); reported latency=0.0 ms; MMCSS=True; buffers=822; max render=2.876 ms; max service gap=11.461 ms; empty-buffer wakes=0; wait timeouts=0; error=

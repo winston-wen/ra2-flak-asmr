@@ -9,11 +9,12 @@ using System.Windows.Forms;
 
 namespace FlakASMR {
 static class PerformanceTests {
-    public static void Live(string path) {
+    public static void Live(string path,bool drag=false) {
         try {
             var queue=new List<double>();var paint=new List<double>();
             using(var audio=new AudioEngine())using(var form=new MainForm(2,true))using(var stop=new ManualResetEvent(false)) {
-                audio.Mixer.Config=new Settings(4,10,500,500,50,50,70,0,true,false);
+                audio.Mixer.Config=new Settings(drag?10:4,10,500,500,50,50,70,0,true,false);
+                if(drag)form.AttachDiagnosticAudio(audio);
                 form.StartPosition=FormStartPosition.Manual;form.Location=new System.Drawing.Point(-10000,-10000);form.ShowInTaskbar=false;
                 int pending=0,count=0;
                 Thread probe=new Thread(()=> {
@@ -23,7 +24,7 @@ static class PerformanceTests {
                         try {form.BeginInvoke(new Action(()=> {
                             if(!stop.WaitOne(0)) {
                                 queue.Add((Stopwatch.GetTimestamp()-sent)*1000.0/Stopwatch.Frequency);
-                                paint.Add(form.InteractionProbe(count++));
+                                paint.Add(drag?form.DragProbe(count++):form.InteractionProbe(count++));
                             }
                             Interlocked.Exchange(ref pending,0);
                         }));}catch(InvalidOperationException) {break;}
@@ -38,7 +39,7 @@ static class PerformanceTests {
                 if(queue.Count<100)throw new Exception("Insufficient UI probe replies");
                 queue.Sort();paint.Sort();
                 string report=string.Format(CultureInfo.InvariantCulture,
-                    "PASS: 14 units / 500ms on real WASAPI at zero output volume; {0} UI messages.\r\nUI queue p95={1:F3}ms, p99={2:F3}ms, max={3:F3}ms\r\nUI interaction+paint p95={4:F3}ms, p99={5:F3}ms, max={6:F3}ms\r\n{7}\r\n",
+                    "PASS: "+(drag?"20 units / continuous captured synthetic window move + full presentation":"14 units / logical-canvas interaction")+" / 500ms on real WASAPI at zero output volume; {0} UI messages.\r\nUI queue p95={1:F3}ms, p99={2:F3}ms, max={3:F3}ms\r\nUI interaction+paint p95={4:F3}ms, p99={5:F3}ms, max={6:F3}ms\r\n{7}\r\n",
                     queue.Count,queue[(int)(queue.Count*.95)],queue[(int)(queue.Count*.99)],queue[queue.Count-1],
                     paint[(int)(paint.Count*.95)],paint[(int)(paint.Count*.99)],paint[paint.Count-1],audio.Diagnostics());
                 File.WriteAllText(path,report);
@@ -93,7 +94,7 @@ static class PerformanceTests {
             }
             using(var form=new MainForm(2,true)) {
                 form.StartPosition=System.Windows.Forms.FormStartPosition.Manual;form.Location=new System.Drawing.Point(-10000,-10000);form.ShowInTaskbar=false;
-                form.Show();System.Windows.Forms.Application.DoEvents();text.Append(form.PaintBenchmark());form.Close();
+                form.Show();System.Windows.Forms.Application.DoEvents();text.Append(form.PaintBenchmark());text.Append(form.PresentationBenchmark());form.Close();
             }
             File.WriteAllText(path,text.ToString());
         }catch(Exception e) {File.WriteAllText(path,"FAIL: "+e);Environment.ExitCode=1;}

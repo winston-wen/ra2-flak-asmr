@@ -12,6 +12,7 @@ static class Program {
     [STAThread] static void Main(string[] args) {
         if(args.Length>1 && args[0]=="--render-regression") {PerformanceTests.Regression(args[1]);return;}
         if(args.Length>1 && args[0]=="--live-benchmark") {Application.EnableVisualStyles();Application.SetCompatibleTextRenderingDefault(false);PerformanceTests.Live(args[1]);return;}
+        if(args.Length>1 && args[0]=="--drag-benchmark") {Application.EnableVisualStyles();Application.SetCompatibleTextRenderingDefault(false);PerformanceTests.Live(args[1],true);return;}
         if(args.Length>1 && args[0]=="--benchmark") {Application.EnableVisualStyles();Application.SetCompatibleTextRenderingDefault(false);PerformanceTests.Run(args[1]);return;}
         if(args.Length>3 && args[0]=="--compare-preview") {
             try {
@@ -33,7 +34,7 @@ static class Program {
                     form.StartPosition=FormStartPosition.Manual;form.Location=new Point(-10000,-10000);form.ShowInTaskbar=false;
                     form.Show();Application.DoEvents();form.ControlTest();form.Close();
                 }
-                File.WriteAllText(args[1],"PASS: 500/50 ms defaults; independent left/right timing; play/pause hit targets and pressed selection; plus/minus hit targets and 4px gaps; horizontal volume drag and endpoints; bitmap numeric editor, commit/cancel and volume editing; range limits; 20px caption buttons; readout alignment; hover/pressed states; incremental canvas equals full repaint through hover, press, input, shrinking text, slider and transport transitions\r\n");
+                File.WriteAllText(args[1],"PASS: defaults; independent timing; standard deviation <= mean, automatic truncation and settings invariants; window-wide Space commits every numeric editor then toggles, including during title drag; captured window move commits editor, stops caret timer and preserves audio snapshot; rail unchanged and thumb recessed on press; volume drag; numeric input; bounds; layout; incremental logical and retained physical presentation equal full repaint\r\n");
             }catch(Exception e) {File.WriteAllText(args[1],"FAIL: "+e);Environment.ExitCode=1;}
             return;
         }

@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -64,6 +65,13 @@ sealed class MainForm : Form {
     static readonly int[] CaptionX={202,226,250,274};
     readonly int uiScale;
     readonly bool previewOnly;
+    bool diagnosticMute;
+    Bitmap probeTarget;
+    Bitmap presentation;
+    Rectangle damage;
+    bool windowDrag;
+    Point windowGrabOffset,windowDragOrigin;
+    [DllImport("user32.dll")] static extern bool SetWindowPos(IntPtr window,IntPtr after,int x,int y,int width,int height,uint flags);
     readonly int[] values={2,500,50,3,500,50};
     readonly Bitmap panel=Resources.Image("panel.png"),buttons=Resources.Image("buttons.png"),
         rail=Resources.Image("rail.png"),thumb=Resources.Image("thumb.png");
@@ -88,6 +96,7 @@ sealed class MainForm : Form {
         using(Graphics desktop=Graphics.FromHwnd(IntPtr.Zero))uiScale=scale>0?scale:Math.Max(2,(int)Math.Ceiling(desktop.DpiX/96f));
         AutoScaleMode=AutoScaleMode.None;FormBorderStyle=FormBorderStyle.None;
         ClientSize=new Size(LogicalWidth*uiScale,LogicalHeight*uiScale);
+        presentation=new Bitmap(ClientSize.Width,ClientSize.Height,System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
         MinimumSize=Size;MaximumSize=Size;StartPosition=FormStartPosition.CenterScreen;
         Text="RA2 Flak ASMR";BackColor=Color.FromArgb(9,6,6);ForeColor=Yellow;
         AccessibleName=Text;AccessibleDescription="左侧与右侧分别调整单位数量、平均开火间隔和标准差；底部调整音量。空格播放或暂停，Tab 输入数值。";
@@ -111,7 +120,7 @@ sealed class MainForm : Form {
             catch(Exception ex) {fault=true;Invalidate();MessageBox.Show(this,ex.Message,"音频设备未就绪",MessageBoxButtons.OK,MessageBoxIcon.Error);}
         };
         FormClosing+=(s,e)=> {closing=true;repeat.Stop();monitor.Stop();caretTimer.Stop();if(engine!=null)engine.Dispose();};
-        FormClosed+=(s,e)=> {panel.Dispose();buttons.Dispose();rail.Dispose();thumb.Dispose();canvas.Dispose();font.Dispose();tip.Dispose();repeat.Dispose();monitor.Dispose();caretTimer.Dispose();};
+        FormClosed+=(s,e)=> {panel.Dispose();buttons.Dispose();rail.Dispose();thumb.Dispose();canvas.Dispose();presentation.Dispose();if(probeTarget!=null)probeTarget.Dispose();font.Dispose();tip.Dispose();repeat.Dispose();monitor.Dispose();caretTimer.Dispose();};
     }
 
     static int Row(int field) {return field%3;}
@@ -141,13 +150,15 @@ sealed class MainForm : Form {
         int state=ButtonState(id,selected)+(selected?3:0),index=id>=100?id-100+12:id;
         if(paintedButtons[index]==state)return;
         g.DrawImage(buttons,target,new Rectangle(kind*20,state*20,20,20),GraphicsUnit.Pixel);
+        Damage(target);
         paintedButtons[index]=state;
     }
-    void Restore(Graphics g,Rectangle region) {g.DrawImage(panel,region,region,GraphicsUnit.Pixel);}
+    void Damage(Rectangle region) {damage=damage.IsEmpty?region:Rectangle.Union(damage,region);}
+    void Restore(Graphics g,Rectangle region) {g.DrawImage(panel,region,region,GraphicsUnit.Pixel);Damage(region);}
     Bitmap RenderCanvas() {
         using(Graphics g=Graphics.FromImage(canvas)) {
             g.SmoothingMode=SmoothingMode.None;g.InterpolationMode=InterpolationMode.NearestNeighbor;g.PixelOffsetMode=PixelOffsetMode.Half;
-            if(!canvasReady) {g.DrawImageUnscaled(panel,0,0);canvasReady=true;}
+            if(!canvasReady) {g.DrawImageUnscaled(panel,0,0);canvasReady=true;Damage(new Rectangle(0,0,LogicalWidth,LogicalHeight));}
             for(int i=0;i<4;i++)PaintButton(g,i+2,CaptionRect(i),100+i,(i==0 && playing)||(i==1 && !playing));
             for(int field=0;field<6;field++) {
                 Rectangle r=ValueRect(field);
@@ -165,7 +176,8 @@ sealed class MainForm : Form {
             }
             int state=volumeDrag?2:hover==200?1:0;
             if(paintedVolume!=volume || paintedVolumeState!=state) {
-                g.DrawImage(rail,VolumeRect,new Rectangle(0,state*16,182,16),GraphicsUnit.Pixel);
+                g.DrawImage(rail,VolumeRect,new Rectangle(0,0,182,16),GraphicsUnit.Pixel);
+                Damage(VolumeRect);
                 int tx=62+(int)Math.Round(170*volume/100.0);
                 g.DrawImage(thumb,new Rectangle(tx,181,8,14),new Rectangle(0,state*14,8,14),GraphicsUnit.Pixel);
                 paintedVolume=volume;paintedVolumeState=state;
@@ -182,11 +194,19 @@ sealed class MainForm : Form {
     }
     protected override void OnPaint(PaintEventArgs e) {
         base.OnPaint(e);
-        e.Graphics.SmoothingMode=SmoothingMode.None;e.Graphics.InterpolationMode=InterpolationMode.NearestNeighbor;e.Graphics.PixelOffsetMode=PixelOffsetMode.Half;
-        e.Graphics.DrawImage(RenderCanvas(),ClientRectangle,new Rectangle(0,0,LogicalWidth,LogicalHeight),GraphicsUnit.Pixel);
+        RenderCanvas();
+        if(!damage.IsEmpty) {
+            using(Graphics g=Graphics.FromImage(presentation)) {
+                g.SmoothingMode=SmoothingMode.None;g.InterpolationMode=InterpolationMode.NearestNeighbor;g.PixelOffsetMode=PixelOffsetMode.Half;
+                Rectangle target=new Rectangle(damage.X*uiScale,damage.Y*uiScale,damage.Width*uiScale,damage.Height*uiScale);
+                g.DrawImage(canvas,target,damage,GraphicsUnit.Pixel);
+            }
+            damage=Rectangle.Empty;
+        }
+        e.Graphics.DrawImageUnscaled(presentation,0,0);
     }
     void Publish() {
-        if(engine!=null)engine.Mixer.Config=new Settings(values[3],values[0],values[4],values[1],values[5],values[2],70,volume,playing,false);
+        if(engine!=null)engine.Mixer.Config=new Settings(values[3],values[0],values[4],values[1],values[5],values[2],70,diagnosticMute?0:volume,playing,false);
         Invalidate();
     }
     Settings CurrentSettings {get {return engine!=null?engine.Mixer.Config:new Settings(values[3],values[0],values[4],values[1],values[5],values[2],70,volume,playing,false);}}
@@ -198,8 +218,9 @@ sealed class MainForm : Form {
     void SetValue(int field,int value) {
         if(field==6) {int next=Math.Max(0,Math.Min(100,value));if(volume==next)return;volume=next;}
         else {
-            int min=Row(field)==1?50:0,max=Row(field)==0?32:Row(field)==1?10000:5000;
+            int row=Row(field),min=row==1?50:0,max=row==0?32:row==1?10000:Math.Min(5000,values[field-1]);
             int next=Math.Max(min,Math.Min(max,value));if(values[field]==next)return;values[field]=next;
+            if(row==1)values[field+1]=Math.Min(values[field+1],next);
         }
         Publish();
     }
@@ -239,6 +260,9 @@ sealed class MainForm : Form {
     protected override void OnMouseDown(MouseEventArgs e) {
         base.OnMouseDown(e);if(e.Button!=MouseButtons.Left)return;
         Focus();PointF p=Logical(e.Location);CommitEdit();int hit=Hit(p);hover=hit;
+        if(hit<0 && Contains(new Rectangle(4,4,292,26),p)) {
+            tip.Hide(this);windowGrabOffset=e.Location;windowDragOrigin=Location;windowDrag=true;Capture=true;return;
+        }
         if(hit>=300 && hit<=306) {BeginEdit(hit-300);return;}
         if(hit==200) {
             tip.Hide(this);
@@ -252,7 +276,7 @@ sealed class MainForm : Form {
             Invalidate();
         }
     }
-    void ReleasePress() {repeat.Stop();pressed=-1;volumeDrag=false;Capture=false;Invalidate();}
+    void ReleasePress() {repeat.Stop();pressed=-1;volumeDrag=windowDrag=false;Capture=false;Invalidate();}
     protected override void OnMouseUp(MouseEventArgs e) {
         base.OnMouseUp(e);if(e.Button!=MouseButtons.Left)return;
         int action=pressed,target=Hit(Logical(e.Location));ReleasePress();
@@ -262,17 +286,24 @@ sealed class MainForm : Form {
     }
     protected override void OnMouseCaptureChanged(EventArgs e) {
         base.OnMouseCaptureChanged(e);
-        if(!Capture) {repeat.Stop();pressed=-1;volumeDrag=false;Invalidate();}
+        if(!Capture) {repeat.Stop();pressed=-1;volumeDrag=windowDrag=false;Invalidate();}
     }
     protected override void OnMouseMove(MouseEventArgs e) {
         base.OnMouseMove(e);PointF p=Logical(e.Location);
+        if(windowDrag) {
+            Point screen=PointToScreen(e.Location);
+            // Keep the ordinary UI message pump running; no native modal move loop,
+            // no repaint or audio publication per mouse move. WM_MOUSEMOVE coalesces.
+            SetWindowPos(Handle,IntPtr.Zero,screen.X-windowGrabOffset.X,screen.Y-windowGrabOffset.Y,0,0,0x415);
+            return;
+        }
         if(volumeDrag) {SetVolume(p);return;}
         int next=Hit(p);if(next==hover)return;
         string help="";
         if(next>=100 && next<104)help=new[]{"播放 · 空格播放/暂停","暂停 · 平滑淡出","最小化","关闭 · 平滑淡出"}[next-100];
         else if(next>=300 && next<=306) {
             int field=next-300;
-            help=field==6?"音量 0–100% · 点击输入":(field<3?"左侧单位组 · ":"右侧单位组 · ")+new[]{"单位数量 0–32","平均间隔 50–10000 ms","标准差 0–5000 ms；0 为固定节奏"}[Row(field)]+" · 点击输入";
+            help=field==6?"音量 0–100% · 点击输入":(field<3?"左侧单位组 · ":"右侧单位组 · ")+new[]{"单位数量 0–32","平均间隔 50–10000 ms；降低时自动截断标准差","标准差不超过均值及 5000 ms；0 为固定节奏"}[Row(field)]+" · 点击输入";
         }
         else if(next>=0 && next<12)help="按住连续调整 · 滚轮调整";
         else if(next==200)help="音量 "+volume+"% · 拖动或滚轮调整";
@@ -293,6 +324,8 @@ sealed class MainForm : Form {
         else base.OnKeyPress(e);
     }
     protected override bool ProcessCmdKey(ref Message msg,Keys key) {
+        if(key==Keys.Space) {CommitEdit();Play(!playing);return true;}
+        if(key==Keys.Escape && windowDrag) {Location=windowDragOrigin;ReleasePress();return true;}
         if(editing>=0) {
             if(key==Keys.Enter) {CommitEdit();return true;}
             if(key==Keys.Escape) {EndEdit();return true;}
@@ -317,7 +350,6 @@ sealed class MainForm : Form {
                 int field=editing;CommitEdit();Adjust(field,key==Keys.Up?1:-1);BeginEdit(field);return true;
             }
         } else {
-            if(key==Keys.Space) {Play(!playing);return true;}
             if(key==Keys.Tab || key==(Keys.Shift|Keys.Tab)) {BeginEdit(key==Keys.Tab?0:6);return true;}
             if(key==Keys.Escape) {ReleasePress();return true;}
         }
@@ -330,11 +362,6 @@ sealed class MainForm : Form {
     }
     protected override void OnDeactivate(EventArgs e) {base.OnDeactivate(e);if(!closing) {CommitEdit();ReleasePress();}}
     protected override void WndProc(ref Message m) {
-        if(m.Msg==0x84) {
-            long raw=m.LParam.ToInt64();Point client=PointToClient(new Point((short)(raw&65535),(short)((raw>>16)&65535)));
-            PointF p=Logical(client);
-            if(Contains(new Rectangle(4,4,292,26),p) && Hit(p)<0) {m.Result=new IntPtr(2);return;}
-        }
         if(m.Msg==0xA3)return;
         base.WndProc(ref m);
     }
@@ -345,7 +372,10 @@ sealed class MainForm : Form {
         Point p=PhysicalPoint(x,y);var e=new MouseEventArgs(MouseButtons.Left,1,p.X,p.Y,0);OnMouseDown(e);OnMouseUp(e);
     }
     void RequireFullRepaintMatches() {
+        using(Bitmap displayBefore=new Bitmap(ClientSize.Width,ClientSize.Height))
+        using(Bitmap displayAfter=new Bitmap(ClientSize.Width,ClientSize.Height))
         using(Bitmap incremental=new Bitmap(RenderCanvas())) {
+            using(Graphics g=Graphics.FromImage(displayBefore))OnPaint(new PaintEventArgs(g,ClientRectangle));
             canvasReady=false;paintedEditing=-2;paintedVolume=paintedVolumeState=-1;
             for(int i=0;i<paintedButtons.Length;i++)paintedButtons[i]=-1;
             for(int i=0;i<paintedValues.Length;i++)paintedValues[i]=-1;
@@ -353,10 +383,14 @@ sealed class MainForm : Form {
             for(int y=0;y<LogicalHeight;y++)for(int x=0;x<LogicalWidth;x++)
                 if(incremental.GetPixel(x,y).ToArgb()!=complete.GetPixel(x,y).ToArgb())
                     throw new Exception("Incremental repaint mismatch at "+x+","+y);
+            using(Graphics g=Graphics.FromImage(displayAfter))OnPaint(new PaintEventArgs(g,ClientRectangle));
+            for(int y=0;y<displayBefore.Height;y++)for(int x=0;x<displayBefore.Width;x++)
+                Require(displayBefore.GetPixel(x,y)==displayAfter.GetPixel(x,y),"Retained presentation equals full repaint");
         }
     }
     internal void ControlTest() {
         Require(ready && (engine!=null || previewOnly),"Audio engine or headless preview ready");
+        diagnosticMute=true;
         Settings defaults=CurrentSettings;
         Require(defaults.IntervalV==500 && defaults.IntervalB==500 && defaults.StdV==50 && defaults.StdB==50,"500/50 defaults");
         SetValue(6,0);SetValue(0,7);SetValue(3,11);SetValue(1,430);SetValue(4,250);SetValue(2,55);SetValue(5,25);
@@ -379,6 +413,35 @@ sealed class MainForm : Form {
         MouseClickAt(268,188);Require(editing==6,"Volume numeric editor hit");
         OnKeyPress(new KeyPressEventArgs('4'));OnKeyPress(new KeyPressEventArgs('2'));ProcessCmdKey(ref msg,Keys.Enter);Require(volume==42,"Typed volume");
         SetValue(6,0);SetValue(3,100);SetValue(1,0);Require(values[3]==32 && values[1]==50,"Value bounds");
+        foreach(int mean in new[]{1,4}) {
+            SetValue(mean,500);SetValue(mean+1,5000);Require(values[mean+1]==500,"Std capped at mean");
+            SetValue(mean,130);Require(values[mean+1]==130,"Lowering mean truncates std atomically");
+            SetValue(mean,700);Require(values[mean+1]==130,"Raising mean preserves std");
+            BeginEdit(mean+1);editText="9999";CommitEdit();Require(values[mean+1]==700,"Typed std capped");
+            BeginEdit(mean);editText="50";CommitEdit();Require(values[mean+1]==50,"Typed mean truncates std");
+        }
+        Settings capped=new Settings(1,1,100,200,500,-10,70,0,false,false);
+        Require(capped.StdB==100 && capped.StdV==0,"Immutable settings defend explicit std limits");
+        capped=new Settings(1,1,100,200,1000,70,0,false,false);
+        Require(capped.StdB==100 && capped.StdV==200,"Legacy settings defend std limits");
+        for(int field=0;field<7;field++) {
+            bool wasPlaying=playing;BeginEdit(field);editText=field==6?"42":Row(field)==0?"9":"100";
+            Require(ProcessCmdKey(ref msg,Keys.Space) && editing<0 && playing!=wasPlaying,"Space commits and toggles every numeric editor");
+        }
+        MouseClickAt(30,60);bool beforeSpace=playing;ProcessCmdKey(ref msg,Keys.Space);Require(playing!=beforeSpace,"Space after image focus");
+        Point original=Location,grab=PhysicalPoint(50,15);
+        BeginEdit(1);editText="250";
+        OnMouseDown(new MouseEventArgs(MouseButtons.Left,1,grab.X,grab.Y,0));
+        Require(windowDrag && Capture && editing<0 && !caretTimer.Enabled && values[1]==250,"Title drag commits editor and stops caret timer");
+        Settings beforeMove=CurrentSettings;
+        OnMouseMove(new MouseEventArgs(MouseButtons.Left,0,grab.X+24,grab.Y+12,0));
+        Require(Location==new Point(original.X+24,original.Y+12),"Captured window moves by physical mouse displacement");
+        Require(engine==null || object.ReferenceEquals(beforeMove,CurrentSettings),"Captured window move keeps audio snapshot");
+        beforeSpace=playing;ProcessCmdKey(ref msg,Keys.Space);Require(playing!=beforeSpace,"Space while captured title drag");
+        OnMouseUp(new MouseEventArgs(MouseButtons.Left,1,grab.X,grab.Y,0));Require(!windowDrag && !Capture,"Title drag releases capture");
+        Location=original;
+        for(int y=0;y<16;y++)for(int x=0;x<182;x++)Require(rail.GetPixel(x,y)==rail.GetPixel(x,y+32),"Volume rail remains unchanged when pressed");
+        Require(thumb.GetPixel(0,0)!=thumb.GetPixel(0,28),"Volume thumb retains recessed edge");
         for(int i=0;i<4;i++)Require(CaptionRect(i).Size==new Size(20,20),"20px caption controls");
         Require(ValueRect(6).Left==ButtonRect(3,-1).Left && ValueRect(6).Right==ButtonRect(3,1).Right,"Aligned readout edges");
         hover=0;Require(ButtonState(0,false)==1,"Hover state");pressed=0;Require(ButtonState(0,false)==2,"Pressed state");ReleasePress();
@@ -393,6 +456,18 @@ sealed class MainForm : Form {
         Require(engine==null || engine.Error==null,"No audio thread error");
     }
     internal void PreviewTransport(bool state) {volume=0;Play(state);volume=30;hover=pressed=-1;Invalidate();}
+    internal void AttachDiagnosticAudio(AudioEngine audio) {engine=audio;diagnosticMute=true;values[0]=values[3]=10;values[1]=values[4]=500;values[2]=values[5]=50;volume=0;playing=true;}
+    internal double DragProbe(int sequence) {
+        if(probeTarget==null)probeTarget=new Bitmap(ClientSize.Width,ClientSize.Height);
+        Point grab=PhysicalPoint(50,15);
+        if(sequence==0)OnMouseDown(new MouseEventArgs(MouseButtons.Left,1,grab.X,grab.Y,0));
+        long started=System.Diagnostics.Stopwatch.GetTimestamp();
+        int offset=(sequence%24)*2;
+        Point target=new Point(-10000+offset,-10000+offset/2);
+        OnMouseMove(new MouseEventArgs(MouseButtons.Left,0,grab.X+target.X-Left,grab.Y+target.Y-Top,0));
+        using(Graphics graphics=Graphics.FromImage(probeTarget))OnPaint(new PaintEventArgs(graphics,ClientRectangle));
+        return (System.Diagnostics.Stopwatch.GetTimestamp()-started)*1000.0/System.Diagnostics.Stopwatch.Frequency;
+    }
     internal double InteractionProbe(int sequence) {
         long started=System.Diagnostics.Stopwatch.GetTimestamp();
         values[0]=10;values[3]=4;hover=sequence%12;volume=sequence%101;RenderCanvas();
@@ -408,6 +483,19 @@ sealed class MainForm : Form {
         }
         Array.Sort(elapsed);double sum=0;foreach(double value in elapsed)sum+=value;
         return string.Format(CultureInfo.InvariantCulture,"UI paint: mean={0:F4}ms, p95={1:F4}ms, p99={2:F4}ms, max={3:F4}ms, gen0={4}\r\n",sum/elapsed.Length,elapsed[950],elapsed[990],elapsed[999],GC.CollectionCount(0)-gc);
+    }
+    internal string PresentationBenchmark() {
+        using(Bitmap target=new Bitmap(ClientSize.Width,ClientSize.Height))using(Graphics g=Graphics.FromImage(target)) {
+            var args=new PaintEventArgs(g,ClientRectangle);double[] elapsed=new double[1000];
+            for(int i=0;i<50;i++)OnPaint(args);
+            int gc=GC.CollectionCount(0);
+            for(int i=0;i<elapsed.Length;i++) {
+                long start=System.Diagnostics.Stopwatch.GetTimestamp();OnPaint(args);
+                elapsed[i]=(System.Diagnostics.Stopwatch.GetTimestamp()-start)*1000.0/System.Diagnostics.Stopwatch.Frequency;
+            }
+            Array.Sort(elapsed);double sum=0;foreach(double value in elapsed)sum+=value;
+            return string.Format(CultureInfo.InvariantCulture,"Retained full presentation (offscreen): mean={0:F4}ms, p95={1:F4}ms, p99={2:F4}ms, max={3:F4}ms, gen0={4}\r\n",sum/elapsed.Length,elapsed[950],elapsed[990],elapsed[999],GC.CollectionCount(0)-gc);
+        }
     }
 }
 }

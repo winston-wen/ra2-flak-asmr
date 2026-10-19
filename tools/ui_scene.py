@@ -130,11 +130,8 @@ class Scene:
     def slider(self, key, x, y, w, h, state, parent):
         self.group(key, x, y, w, h, parent, 'Volume / ' + state)
         self.rect(key + '-track', x, y, w, h, '#070000', None, group=key)
-        self.edge(key + '-edge', x, y, w, h, state == 'pressed', key)
+        self.edge(key + '-edge', x, y, w, h, False, key)
         self.rect(key + '-rail-top', x + 1, y + 1, w - 2, 1, '#851400', None, group=key)
-        if state == 'pressed':
-            self.rect(key + '-pressed-rail-top', x + 1, y + 1, w - 2, 1, '#030000', None, group=key)
-            self.rect(key + '-rail-left', x + 1, y + 1, 1, h - 2, '#030000', None, group=key)
         tx = x + 2 + round((w - 12) * 0.3)
         self.rect(key + '-thumb-base', tx, y + 1, 8, h - 2, '#710B00', None, group=key)
         self.face(key + '-thumb-face', tx + 1, y + 2, 6, h - 4, 'normal', False, key)
