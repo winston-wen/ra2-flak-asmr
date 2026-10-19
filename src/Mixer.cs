@@ -1,13 +1,14 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Security.Cryptography;
 
 namespace FlakASMR {
 sealed class Mixer {
     public const int Rate=48000, MaxUnits=32;
     public volatile Settings Config=new Settings(3,2,500,500,50,50,70,30,false,false);
     readonly float[][][] clips=new float[2][][];
-    readonly Random random=new Random(72491);
+    readonly Random random;
     readonly Unit[] units=new Unit[64];
     readonly Voice[] voices=new Voice[2048];
     int voiceCount; long clock; bool wasPlaying, wasVolley;
@@ -39,7 +40,14 @@ sealed class Mixer {
     }
     sealed class Unit { public bool Enabled; public long Next; public int Last=-1, Interval; public double Gain; public double Pan; public bool Steady; }
     struct Voice { public float[] Clip; public int Unit; public long Start; public double L,R; }
-    public Mixer() {
+    static int NewSeed() {
+        byte[] seed=new byte[4];
+        using(RandomNumberGenerator source=RandomNumberGenerator.Create())source.GetBytes(seed);
+        return BitConverter.ToInt32(seed,0);
+    }
+    public Mixer() : this(NewSeed()) {}
+    internal Mixer(int seed) {
+        random=new Random(seed);
         Reserve(2048);
         for(int g=0;g<2;g++) {
             clips[g]=new float[4][];
@@ -112,10 +120,15 @@ sealed class Mixer {
             Unit u=units[i];bool enabled=c.Playing && i%32<(i<32?c.B:c.V);
             int interval=(i<32?c.IntervalB:c.IntervalV)*Rate/1000;
             if(enabled && (!u.Enabled || starting || modeChanged))
-                u.Next=clock+(c.Volley || i%32==0?0:(long)(random.NextDouble()*interval));
+                // Every unit gets an independent phase, including each group's
+                // first unit. Re-enabling a unit draws a fresh phase as well.
+                u.Next=clock+(c.Volley?0:(long)(random.NextDouble()*interval));
+            else if(enabled && u.Interval!=interval && u.Interval>0 && u.Next>clock)
+                // Preserve fractional time remaining instead of clamping many
+                // pending shots onto the same deadline when speed increases.
+                u.Next=clock+(long)Math.Round((u.Next-clock)*(double)interval/u.Interval);
             u.Enabled=enabled;
             if(!enabled)continue;
-            if(u.Interval!=interval && u.Next>clock+interval)u.Next=clock+interval;
             u.Interval=interval;
             while(u.Next<end) {
                 Shot(i,Math.Max(clock,u.Next),total);

@@ -19,7 +19,7 @@ static class MixerRegression {
         try {
             long compared=0;int maxDifference=0;
             foreach(int frames in new[]{127,480,1440,4096}) {
-                Mixer current=new Mixer();ReferenceMixer reference=new ReferenceMixer();
+                Mixer current=new Mixer(72491);ReferenceMixer reference=new ReferenceMixer();
                 current.Reserve(frames);
                 short[] actual=new short[frames*2],expected=new short[frames*2];
                 long clock=0;int previous=-1;
@@ -39,7 +39,8 @@ static class MixerRegression {
             // Zero-width blocks must not advance timing or touch output.
             Mixer empty=new Mixer();short[] sentinel={123,-456};empty.Render(sentinel,0);
             if(sentinel[0]!=123 || sentinel[1]!=-456)throw new Exception("Zero frame block changed output");
-            Console.WriteLine("PASS: "+compared+" PCM samples versus frozen mixer; max delta="+maxDifference+" LSB; four block sizes; play/pause, counts, width, volume, distributions, fixed timing and volley.");
+            StartTimingTests.Run();
+            Console.WriteLine("PASS: "+compared+" PCM samples versus per-sample reference with the approved 1.1.3 scheduling policy; max delta="+maxDifference+" LSB; four block sizes; play/pause, counts, width, volume, distributions, fixed timing and volley.");
             return 0;
         }catch(Exception e) {Console.Error.WriteLine(e);return 1;}
     }

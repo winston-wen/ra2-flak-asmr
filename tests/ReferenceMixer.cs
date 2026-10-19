@@ -80,11 +80,13 @@ sealed class ReferenceMixer {
             Unit u=units[i]; bool enabled=c.Playing && i%32<(i<32?c.B:c.V);
             int interval=(i<32?c.IntervalB:c.IntervalV)*Rate/1000;
             if(enabled && (!u.Enabled || starting || modeChanged))
-                u.Next=clock+(c.Volley || i%32==0 ? 0 : (long)(random.NextDouble()*interval));
+                u.Next=clock+(c.Volley ? 0 : (long)(random.NextDouble()*interval));
+            else if(enabled && u.Interval!=interval && u.Interval>0 && u.Next>clock)
+                u.Next=clock+(long)Math.Round((u.Next-clock)*(double)interval/u.Interval);
             u.Enabled=enabled;
             if(!enabled) continue;
-            // Changing speed takes effect within the next interval, even after a long pause.
-            if(u.Interval!=interval && u.Next>clock+interval) u.Next=clock+interval;
+            // Scheduler policy intentionally follows 1.1.3; the old per-sample
+            // mixing algorithm below remains the independent PCM reference.
             u.Interval=interval;
             while(u.Next<end) {
                 Shot(i,Math.Max(clock,u.Next),total);

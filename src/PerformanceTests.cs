@@ -47,7 +47,7 @@ static class PerformanceTests {
         }catch(Exception e){File.WriteAllText(path,"FAIL: "+e);Environment.ExitCode=1;}
     }
     public static void Regression(string path) {
-        Mixer mixer=new Mixer();short[] pcm=new short[960];
+        Mixer mixer=new Mixer(72491);short[] pcm=new short[960];
         using(var writer=new BinaryWriter(File.Create(path))) {
             for(int block=0;block<1000;block++) {
                 if(block==0)mixer.Config=new Settings(4,10,500,500,50,50,70,30,true,false);
@@ -82,11 +82,11 @@ static class PerformanceTests {
         try {
             var text=new StringBuilder("Mixer benchmark; percentage of one core; virtual playback; includes OS scheduling variation.\r\n");
             foreach(int frames in new[]{480,1440}) {
-                Mixer m=new Mixer();m.Config=Configuration(4,10,500,true);Advance(m,frames,3);
+                Mixer m=new Mixer(72491);m.Config=Configuration(4,10,500,true);Advance(m,frames,3);
                 Measure(text,"14 units / 500ms",m,frames,20);
-                m=new Mixer();m.Config=Configuration(32,32,50,true);Advance(m,frames,3);
+                m=new Mixer(72491);m.Config=Configuration(32,32,50,true);Advance(m,frames,3);
                 Measure(text,"64 units / 50ms",m,frames,5);
-                m=new Mixer();m.Config=Configuration(32,32,500,true);Advance(m,frames,3);
+                m=new Mixer(72491);m.Config=Configuration(32,32,500,true);Advance(m,frames,3);
                 m.Config=Configuration(4,10,500,true);Advance(m,frames,18);
                 Measure(text,"64 -> 14 units / settled",m,frames,5);
                 m.Config=Configuration(4,10,500,false);Advance(m,frames,18);
