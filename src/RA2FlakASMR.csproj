@@ -19,7 +19,7 @@
     <Compile Include="FlakASMR.cs" /><Compile Include="WasapiEngine.cs" />
     <Compile Include="PixelForm.cs" /><Compile Include="AssemblyInfo.cs" />
     <Compile Include="PerformanceTests.cs" />
-    <Compile Include="Mixer.cs" /><Compile Include="OilIncome.cs" />
+    <Compile Include="Mixer.cs" /><Compile Include="AttackSoundBus.cs" /><Compile Include="OilIncome.cs" />
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="..\assets\audio\*.wav"><LogicalName>%(Filename)%(Extension)</LogicalName></EmbeddedResource>
     <EmbeddedResource Include="..\assets\images\*.png"><LogicalName>%(Filename)%(Extension)</LogicalName></EmbeddedResource>

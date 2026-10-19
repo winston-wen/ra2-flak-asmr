@@ -9,9 +9,9 @@ sealed class Mixer {
     public volatile Settings Config=new Settings(3,2,500,500,50,50,70,30,false,false);
     readonly float[][][] clips=new float[2][][];
     readonly Random random;
-    readonly Unit[] units=new Unit[64];
-    readonly Voice[] voices=new Voice[2048];
-    int voiceCount; long clock; bool wasPlaying, wasVolley;
+    readonly AttackUnit[] units=new AttackUnit[64];
+    internal readonly AttackSoundBus Attacks;
+    long clock; bool wasPlaying, wasVolley;
     bool hasNormal;double spareNormal;
     double master, normalization=1, width=.7;
     double[] left,right,oilBus;
@@ -23,24 +23,25 @@ sealed class Mixer {
     public void Reserve(int frames) {
         if(frames<=capacity)return;
         capacity=Math.Max(frames,2048);left=new double[capacity];right=new double[capacity];oilBus=new double[capacity];
-        envelope=new double[64][];for(int i=0;i<64;i++)envelope[i]=new double[capacity];
+        envelope=new double[64][];for(int i=0;i<64;i++) {envelope[i]=new double[capacity];units[i].Envelope=envelope[i];}
     }
     public volatile float Peak;
     public long Shots;
-    public int ActiveVoices { get { return voiceCount; } }
+    public int ActiveVoices { get { return Attacks.ActiveVoices; } }
     public double SampleInterval(int mean,int std) {
+        return Interval(random,ref hasNormal,ref spareNormal,mean,std);
+    }
+    static double Interval(Random source,ref bool hasSpare,ref double spare,int mean,int std) {
         if(std==0)return mean;
         double normal;
-        if(hasNormal) {normal=spareNormal;hasNormal=false;}
+        if(hasSpare) {normal=spare;hasSpare=false;}
         else {
-            double radius=Math.Sqrt(-2*Math.Log(1-random.NextDouble()));
-            double angle=2*Math.PI*random.NextDouble();
-            normal=radius*Math.Cos(angle);spareNormal=radius*Math.Sin(angle);hasNormal=true;
+            double radius=Math.Sqrt(-2*Math.Log(1-source.NextDouble()));
+            double angle=2*Math.PI*source.NextDouble();
+            normal=radius*Math.Cos(angle);spare=radius*Math.Sin(angle);hasSpare=true;
         }
         return Math.Max(50,mean+std*normal);
     }
-    sealed class Unit { public bool Enabled; public long Next; public int Last=-1, Interval; public double Gain; public double Pan; public bool Steady; }
-    struct Voice { public float[] Clip; public int Unit; public long Start; public double L,R; }
     static int NewSeed() {
         byte[] seed=new byte[4];
         using(RandomNumberGenerator source=RandomNumberGenerator.Create())source.GetBytes(seed);
@@ -49,6 +50,7 @@ sealed class Mixer {
     public Mixer() : this(NewSeed()) {}
     internal Mixer(int seed) {
         random=new Random(seed);
+        for(int i=0;i<units.Length;i++)units[i]=new AttackUnit {Pan=(i%32)*.61803398875%1*2-1,Timing=new Random(unchecked(seed^((i+1)*(int)0x9E3779B9)))};
         Reserve(2048);
         for(int g=0;g<2;g++) {
             clips[g]=new float[4][];
@@ -73,26 +75,18 @@ sealed class Mixer {
                 if(clips[g][k]==null) throw new InvalidDataException(name);
             }
         }
-        for(int i=0;i<units.Length;i++) units[i]=new Unit {Pan=(i%32)*.61803398875%1*2-1};
+        Attacks=new AttackSoundBus(clips,units,unchecked(seed^0x4F1BBCDC));
     }
     public bool BoundariesZero() {
         foreach(float[][] group in clips) foreach(float[] clip in group)
             if(clip[0]!=0 || clip[clip.Length-1]!=0) return false;
         return Oil.BoundariesZero;
     }
-    void Shot(int index,long start,int count) {
-        if(voiceCount==voices.Length) return;
-        Unit u=units[index]; int variant=random.Next(3); if(variant>=u.Last && u.Last>=0) variant++;
-        if(u.Last<0) variant=random.Next(4); u.Last=variant;
-        double angle=(u.Pan*width+1)*Math.PI/4;
-        voices[voiceCount++]=new Voice {Clip=clips[index/32][variant],Unit=index,Start=start,L=Math.Cos(angle),R=Math.Sin(angle)};
-        Shots++;
-    }
     // A voice is traversed once per buffer, with contiguous clip reads. Unit
     // envelopes are evaluated only during transitions; settled units need no array.
     void PrepareEnvelopes(int frames) {
         for(int i=0;i<64;i++) {
-            Unit u=units[i];double target=u.Enabled?1:0,gain=u.Gain;
+            AttackUnit u=units[i];double target=u.Enabled?1:0,gain=u.Gain;
             u.Steady=gain==target;
             if(u.Steady)continue;
             double[] ramp=envelope[i];
@@ -112,18 +106,18 @@ sealed class Mixer {
     }
     public void Render(short[] output,int frames) {
         if(frames<0 || frames>output.Length/2)throw new ArgumentOutOfRangeException("frames");
+        if(frames==0)return;
         if(frames>capacity)Reserve(frames);
         Settings c=Config;long end=clock+frames;
-        int total=c.B+c.V;
-        width+=(c.Width/100.0-width)*.1;
+        width=c.Width/100.0;
         bool starting=c.Playing && !wasPlaying,modeChanged=c.Volley!=wasVolley;
         for(int i=0;i<64;i++) {
-            Unit u=units[i];bool enabled=c.Playing && i%32<(i<32?c.B:c.V);
+            AttackUnit u=units[i];bool enabled=c.Playing && i%32<(i<32?c.B:c.V);
             int interval=(i<32?c.IntervalB:c.IntervalV)*Rate/1000;
             if(enabled && (!u.Enabled || starting || modeChanged))
                 // Every unit gets an independent phase, including each group's
                 // first unit. Re-enabling a unit draws a fresh phase as well.
-                u.Next=clock+(c.Volley?0:(long)(random.NextDouble()*interval));
+                u.Next=clock+(c.Volley?0:(long)(u.Timing.NextDouble()*interval));
             else if(enabled && u.Interval!=interval && u.Interval>0 && u.Next>clock)
                 // Preserve fractional time remaining instead of clamping many
                 // pending shots onto the same deadline when speed increases.
@@ -131,47 +125,35 @@ sealed class Mixer {
             u.Enabled=enabled;
             if(!enabled)continue;
             u.Interval=interval;
-            while(u.Next<end) {
-                Shot(i,Math.Max(clock,u.Next),total);
-                int std=c.Volley?0:(i<32?c.StdB:c.StdV);
-                u.Next+=(long)Math.Round(SampleInterval(i<32?c.IntervalB:c.IntervalV,std)*Rate/1000);
-            }
         }
+        Attacks.CancelDisabled();
         wasPlaying=c.Playing;wasVolley=c.Volley;
         PrepareEnvelopes(frames);
         double targetMaster=c.Playing?c.Volume/100.0:0;
-        double targetNorm=.7/Math.Sqrt(Math.Max(1,total));
-        bool oilAudible=Oil.Render(oilBus,frames,c.OilWells,c.Playing);
-        if(voiceCount==0 && !oilAudible) {
-            // Exact closed form of the same one-pole envelope over a silent block.
+        int audibleUnits=Math.Min(AttackSoundBus.Limit,c.B)+Math.Min(AttackSoundBus.Limit,c.V);
+        double targetNorm=.7/Math.Sqrt(Math.Max(1,audibleUnits));
+        bool oilAudible=Oil.Render(oilBus,frames,c.OilWells,c.Playing),attackAudible=false;
+        Array.Clear(left,0,frames);Array.Clear(right,0,frames);
+        int offset=0;
+        while(offset<frames) {
+            long now=clock+offset;
+            if(now==Attacks.NextService)Attacks.Service(now,width);
+            int count=(int)Math.Min(frames-offset,Attacks.NextService-now);
+            long stop=now+count;
+            for(int i=0;i<64;i++) {
+                AttackUnit unit=units[i];if(!unit.Enabled)continue;
+                while(unit.Next<stop) {
+                    Attacks.Queue(i,Math.Max(now,unit.Next));Shots++;
+                    int mean=i<32?c.IntervalB:c.IntervalV,std=c.Volley?0:(i<32?c.StdB:c.StdV);
+                    unit.Next+=(long)Math.Round(Interval(unit.Timing,ref unit.HasNormal,ref unit.SpareNormal,mean,std)*Rate/1000);
+                }
+            }
+            attackAudible|=Attacks.Mix(left,right,offset,count);offset+=count;
+        }
+        if(!attackAudible && !oilAudible) {
             master=Settled(targetMaster+(master-targetMaster)*Math.Pow(1-MasterStep,frames),targetMaster);
             normalization=Settled(targetNorm+(normalization-targetNorm)*Math.Pow(1-NormStep,frames),targetNorm);
             Array.Clear(output,0,frames*2);clock=end;Peak=0;return;
-        }
-        Array.Clear(left,0,frames);Array.Clear(right,0,frames);
-        for(int j=voiceCount-1;j>=0;j--) {
-            Voice voice=voices[j];Unit unit=units[voice.Unit];
-            long offset=clock-voice.Start;
-            if(offset>=voice.Clip.Length || (!unit.Enabled && unit.Steady && unit.Gain==0)) {
-                voices[j]=voices[--voiceCount];voices[voiceCount]=new Voice();continue;
-            }
-            int dest=offset<0?(int)-offset:0,source=offset>0?(int)offset:0;
-            int count=Math.Min(frames-dest,voice.Clip.Length-source);
-            float[] clip=voice.Clip;double l=voice.L,r=voice.R;
-            if(unit.Steady) {
-                int stop=source+count;
-                while(source<stop) {
-                    double sample=clip[source++];left[dest]+=sample*l;right[dest++]+=sample*r;
-                }
-            } else {
-                double[] ramp=envelope[voice.Unit];int stop=source+count;
-                while(source<stop) {
-                    double sample=clip[source++]*ramp[dest];left[dest]+=sample*l;right[dest++]+=sample*r;
-                }
-            }
-            if(voice.Start+clip.Length<=end || (!unit.Enabled && unit.Gain==0)) {
-                voices[j]=voices[--voiceCount];voices[voiceCount]=new Voice();
-            }
         }
         float peak=0;
         for(int n=0;n<frames;n++) {

@@ -1,0 +1,114 @@
+红警2 / 尤里的复仇：攻击事件批处理与 Limit=5，2026-10-19
+方法：只读核对本机 EXE 和已提取原版 INI；未修改或运行游戏。
+
+原版 Defaults Limit=5；防空攻击事件 random interrupt 未覆盖 Limit。
+同音量排序：新 pending 排在 playing 前；pending 内 FIFO，playing 内较新的排前面。
+Global 实例使用 0x407420 插在全局哨兵之前，因此全局服务按创建先后遍历。
+每类事件链表按 volume / interrupt / state 排序，随后超过 Limit 即移除尾节点。
+当 Control 的 interrupt 位为1且音量相近时，遇到 state!=0 的旧事件即在其前插入；state=0 的待播放事件继续向后扫描。
+所以一批 pending 超过5时后来请求被剪除；原有播放事件则最旧的先被替换。
+这里只针对生成器采用的等音量、等优先级事件模型，不涵盖地图距离衰减或不同优先级。
+实际声音服务的 >33ms 门槛与毫秒时钟见 credit-audio-service-evidence.txt。
+
+gamemd.exe: SHA256=3e81a61775d2745d1dabe397325ef663cd994ffc194da4e998e3bf5d2d308600, image base=0x400000
+0040529B: mov      dword ptr [esi + 0x158], ebp
+004052A1: mov      edx, esi
+004052A3: mov      ecx, 0x87e180
+004052A8: call     0x407420
+
+gamemd.exe: SHA256=3e81a61775d2745d1dabe397325ef663cd994ffc194da4e998e3bf5d2d308600, image base=0x400000
+0040421C: mov      eax, dword ptr [ebp + 0x24]
+0040421F: mov      ecx, dword ptr [0x87e2ac]
+00404225: cmp      dword ptr [eax + 0x98], ecx
+0040422B: je       0x404251
+0040422D: lea      ecx, [eax + 0x8c]
+00404233: call     0x4072c0
+00404238: mov      edx, dword ptr [ebp + 0x24]
+0040423B: mov      dword ptr [edx + 0x44], 0
+00404242: mov      eax, dword ptr [ebp + 0x24]
+00404245: mov      ecx, dword ptr [0x87e2ac]
+0040424B: mov      dword ptr [eax + 0x98], ecx
+00404251: lea      ecx, [ebp + 0xb8]
+00404257: call     0x401080
+0040425C: mov      eax, dword ptr [ebp + 0x1c]
+0040425F: cmp      eax, 4
+00404262: je       0x404340
+00404268: mov      edi, dword ptr [ebp + 0x24]
+0040426B: mov      ebx, dword ptr [ebp + 0xbc]
+00404271: shr      ebx, 0x10
+00404274: mov      esi, dword ptr [edi + 0x8c]
+0040427A: lea      eax, [edi + 0x8c]
+00404280: cmp      esi, eax
+00404282: je       0x4042d4
+00404284: mov      edx, dword ptr [edi + 0x1c]
+00404287: mov      eax, 0xcccccccd
+0040428C: shr      edx, 0x10
+0040428F: mul      edx
+00404291: shr      edx, 3
+00404294: mov      dword ptr [esp + 0x14], edx
+00404298: mov      ecx, dword ptr [esi + 0xb0]
+0040429E: shr      ecx, 0x10
+004042A1: mov      eax, ecx
+004042A3: sub      eax, ebx
+004042A5: jns      0x4042a9
+004042A7: neg      eax
+004042A9: cmp      eax, dword ptr [esp + 0x14]
+004042AD: jge      0x4042c4
+004042AF: test     byte ptr [edi + 0x10], 0x10
+004042B3: mov      eax, dword ptr [esi + 0x10]
+004042B6: je       0x4042be
+004042B8: test     eax, eax
+004042BA: jne      0x4042d4
+004042BC: jmp      0x4042c8
+004042BE: test     eax, eax
+004042C0: je       0x4042d4
+004042C2: jmp      0x4042c8
+004042C4: cmp      ecx, ebx
+004042C6: jb       0x4042d4
+004042C8: mov      esi, dword ptr [esi]
+004042CA: lea      eax, [edi + 0x8c]
+004042D0: cmp      esi, eax
+004042D2: jne      0x404298
+004042D4: lea      ebx, [ebp + 0xc]
+004042D7: mov      ecx, ebx
+004042D9: call     0x4072d0
+004042DE: mov      edx, ebx
+004042E0: mov      ecx, esi
+004042E2: call     0x407420
+004042E7: mov      esi, dword ptr [edi + 0x44]
+004042EA: mov      eax, dword ptr [edi + 0x48]
+004042ED: inc      esi
+004042EE: test     eax, eax
+004042F0: mov      dword ptr [edi + 0x44], esi
+004042F3: mov      ecx, esi
+004042F5: je       0x404340
+004042F7: cmp      ecx, eax
+004042F9: jle      0x404340
+004042FB: mov      esi, dword ptr [edi + 0x90]
+00404301: sub      esi, 0xc
+00404304: lea      ecx, [esi + 0xc]
+00404307: call     0x407450
+0040430C: test     byte ptr [esi + 0x18], 1
+00404310: jne      0x40433d
+00404312: mov      ecx, esi
+00404314: call     0x404140
+00404319: mov      ecx, esi
+0040431B: call     0x404d80
+00404320: mov      dword ptr [esi + 0x1c], 4
+00404327: xor      eax, eax
+00404329: mov      dword ptr [esi + 0x138], eax
+0040432F: mov      dword ptr [esi + 0x278], eax
+00404335: mov      eax, dword ptr [esi + 0x18]
+00404338: or       al, 1
+0040433A: mov      dword ptr [esi + 0x18], eax
+0040433D: dec      dword ptr [edi + 0x44]
+00404340: mov      ebp, dword ptr [ebp]
+
+gamemd.exe: SHA256=3e81a61775d2745d1dabe397325ef663cd994ffc194da4e998e3bf5d2d308600, image base=0x400000
+00407420: mov      eax, dword ptr [ecx + 4]
+00407423: mov      dword ptr [edx], ecx
+00407425: mov      dword ptr [edx + 4], eax
+00407428: mov      dword ptr [ecx + 4], edx
+0040742B: mov      ecx, dword ptr [edx + 4]
+0040742E: mov      dword ptr [ecx], edx
+00407430: ret      

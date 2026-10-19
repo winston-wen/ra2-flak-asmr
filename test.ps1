@@ -14,7 +14,7 @@ $flakRegressionArguments = @('/nologo','/target:exe','/platform:x64','/optimize+
 foreach($flakClip in Get-ChildItem -LiteralPath (Join-Path $flakRoot 'assets/audio') -Filter '*.wav') {
     $flakRegressionArguments += '/resource:'+$flakClip.FullName+','+$flakClip.Name
 }
-foreach($flakSource in @('src/Settings.cs','src/Mixer.cs','src/OilIncome.cs','tests/OilIncomeTests.cs','tests/ReferenceMixer.cs','tests/StartTimingTests.cs','tests/MixerRegression.cs')) {
+foreach($flakSource in @('src/Settings.cs','src/Mixer.cs','src/AttackSoundBus.cs','src/OilIncome.cs','tests/OilIncomeTests.cs','tests/AttackBatchTests.cs','tests/StartTimingTests.cs','tests/MixerRegression.cs')) {
     $flakRegressionArguments += Join-Path $flakRoot $flakSource
 }
 & $flakCompiler $flakRegressionArguments

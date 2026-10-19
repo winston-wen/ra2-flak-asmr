@@ -17,30 +17,32 @@ static class MixerRegression {
     }
     static int Main() {
         try {
-            long compared=0;int maxDifference=0;
+            const int length=Mixer.Rate*12;short[] reference=null;long compared=0;int maxDifference=0;long expectedShots=0,expectedStarts=0;
             foreach(int frames in new[]{127,480,1440,4096}) {
-                Mixer current=new Mixer(72491);ReferenceMixer reference=new ReferenceMixer();
-                current.Reserve(frames);
-                short[] actual=new short[frames*2],expected=new short[frames*2];
-                long clock=0;int previous=-1;
-                while(clock<Mixer.Rate*12) {
-                    int phase=(int)(clock/(Mixer.Rate*1.5));
-                    if(phase!=previous) {current.Config=reference.Config=Phase(phase);previous=phase;}
-                    current.Render(actual,frames);reference.Render(expected,frames);
-                    for(int i=0;i<frames*2;i++) {
-                        int difference=Math.Abs((int)actual[i]-expected[i]);
-                        maxDifference=Math.Max(maxDifference,difference);
-                        if(difference>1)throw new Exception("PCM changed by "+difference+" LSB at frames="+frames+", sample="+(clock*2+i));
-                    }
-                    if(current.Shots!=reference.Shots)throw new Exception("Shot scheduling changed");
-                    compared+=frames*2;clock+=frames;
+                Mixer current=new Mixer(72491);current.Reserve(frames);
+                short[] actual=new short[frames*2],all=new short[length*2];int clock=0,previous=-1;
+                while(clock<length) {
+                    int phase=clock/72000;
+                    if(phase!=previous) {current.Config=Phase(phase);previous=phase;}
+                    int count=Math.Min(frames,Math.Min(length-clock,(phase+1)*72000-clock));
+                    current.Render(actual,count);Array.Copy(actual,0,all,clock*2,count*2);clock+=count;
+                    if(current.ActiveVoices>10)throw new Exception("Attack event limits exceeded");
                 }
+                if(reference==null) {reference=all;expectedShots=current.Shots;expectedStarts=current.Attacks.Started;}
+                else {
+                    for(int i=0;i<all.Length;i++) {
+                        int difference=Math.Abs((int)all[i]-reference[i]);maxDifference=Math.Max(maxDifference,difference);
+                        if(difference>1)throw new Exception("PCM callback-size dependence: "+difference+" LSB at block="+frames+", sample="+i);
+                    }
+                    if(current.Shots!=expectedShots || current.Attacks.Started!=expectedStarts)throw new Exception("Callback size changed attack timing or batch admission");
+                }
+                compared+=all.Length;
             }
             // Zero-width blocks must not advance timing or touch output.
             Mixer empty=new Mixer();short[] sentinel={123,-456};empty.Render(sentinel,0);
             if(sentinel[0]!=123 || sentinel[1]!=-456)throw new Exception("Zero frame block changed output");
-            StartTimingTests.Run();OilIncomeTests.Run();
-            Console.WriteLine("PASS: "+compared+" PCM samples versus per-sample reference with the approved 1.1.3 scheduling policy; max delta="+maxDifference+" LSB; four block sizes; play/pause, counts, width, volume, distributions, fixed timing and volley.");
+            StartTimingTests.Run();AttackBatchTests.Run();OilIncomeTests.Run();
+            Console.WriteLine("PASS: "+compared+" PCM samples across callback sizes with 1.2.1 batching; max delta="+maxDifference+" LSB; four block sizes; play/pause, counts, width, volume, distributions, fixed timing and volley.");
             return 0;
         }catch(Exception e) {Console.Error.WriteLine(e);return 1;}
     }

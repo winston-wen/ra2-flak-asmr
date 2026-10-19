@@ -1,4 +1,4 @@
-// Frozen pre-optimization mixer, compiled ONLY into the regression test tool.
+// Historical pre-optimization / 1.1.3 mixer; no longer compiled by test.ps1.
 // Keep sample scheduling and envelope behavior independent of the optimized loops.
 using System;
 using System.IO;

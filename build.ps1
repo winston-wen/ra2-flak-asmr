@@ -19,7 +19,7 @@ $flakResources += @(Get-Item -LiteralPath (Join-Path $flakRoot 'assets/fonts/wes
 $flakResources += @(Get-Item -LiteralPath (Join-Path $flakRoot 'assets/fonts/FONT-LICENSE.txt'))
 foreach ($flakResource in $flakResources) { $flakArguments += '/resource:' + $flakResource.FullName + ',' + $flakResource.Name }
 $flakArguments += '/win32icon:' + (Join-Path $flakRoot 'assets/images/flak.ico')
-foreach ($flakSource in @('FlakASMR.cs','Settings.cs','Mixer.cs','OilIncome.cs','WasapiEngine.cs','PixelForm.cs','PerformanceTests.cs','AssemblyInfo.cs')) {
+foreach ($flakSource in @('FlakASMR.cs','Settings.cs','Mixer.cs','AttackSoundBus.cs','OilIncome.cs','WasapiEngine.cs','PixelForm.cs','PerformanceTests.cs','AssemblyInfo.cs')) {
     $flakArguments += Join-Path $flakRoot ('src/' + $flakSource)
 }
 & $flakCompiler $flakArguments

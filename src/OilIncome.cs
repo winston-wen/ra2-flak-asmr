@@ -11,6 +11,9 @@ sealed class OilEconomy {
     int wells;
     public long Frame, Balance, Displayed, CaptureIncome, RecurringIncome, SoundRequests;
     public bool Tick(int requested) {
+        AdvanceFrame(requested);return AdvanceCounter();
+    }
+    internal void AdvanceFrame(int requested) {
         requested=Math.Max(0,Math.Min(MaxWells,requested));
         for(int i=wells;i<requested;i++) {due[i]=Frame+PaymentFrames;Balance+=1000;CaptureIncome+=1000;}
         wells=requested;
@@ -19,6 +22,8 @@ sealed class OilEconomy {
             Balance+=20;RecurringIncome+=20;due[i]+=PaymentFrames;
         }
         Frame++;
+    }
+    internal bool AdvanceCounter() {
         long difference=Balance-Displayed;
         if(difference<=0)return false;
         Displayed+=Math.Min(143L,Math.Max(1L,difference>>3));
@@ -28,12 +33,13 @@ sealed class OilEconomy {
 
 sealed class OilIncome {
     const int SamplesPerFrame=Mixer.Rate/OilEconomy.FramesPerSecond, BridgeSamples=48;
-    // The original sound manager is serviced only when elapsed integer ms > 33
-    // (RA2 0x406EE2, YR 0x406FB2). Pending requests share its Limit=1 queue.
-    internal const int ServiceSamples=Mixer.Rate*34/1000;
+    // Original baseline: elapsed integer ms >33 (RA2 0x406EE2, YR 0x406FB2).
+    // CreditUp keeps Limit=1, with the user-requested 1.25x slower presentation.
+    internal const int ServiceSamples=Mixer.Rate*34/1000*5/4,CounterSamples=SamplesPerFrame*5/4;
+    internal const double Gain=.05; // half the previous CreditUp gain (-6.02 dB)
     readonly float[] clip;
     internal readonly OilEconomy Economy=new OilEconomy();
-    int untilTick,untilService=ServiceSamples,position,bridge;
+    int untilTick,untilCounter,untilService=ServiceSamples,position,bridge;
     bool pending;
     double last,bridgeFrom;
     internal long VoiceStarts;
@@ -57,8 +63,12 @@ sealed class OilIncome {
         Array.Clear(output,0,frames);bool audible=false;int dest=0;
         while(dest<frames) {
             if(playing && untilTick==0) {
-                if(Economy.Tick(wells))pending=true;
+                Economy.AdvanceFrame(wells);
                 untilTick=SamplesPerFrame;
+            }
+            if(playing && untilCounter==0) {
+                if(Economy.AdvanceCounter())pending=true;
+                untilCounter=CounterSamples;
             }
             if(playing && untilService==0) {
                 if(pending) {
@@ -69,13 +79,13 @@ sealed class OilIncome {
                 }
                 untilService=ServiceSamples;
             }
-            int count=playing?Math.Min(frames-dest,Math.Min(untilTick,untilService)):frames-dest;
+            int count=playing?Math.Min(frames-dest,Math.Min(untilCounter,Math.Min(untilTick,untilService))):frames-dest;
             for(int n=0;(position<clip.Length || bridge<BridgeSamples) && n<count;n++) {
-                double sample=position<clip.Length?clip[position++]*.1:0;
+                double sample=position<clip.Length?clip[position++]*Gain:0;
                 if(bridge<BridgeSamples) {double t=++bridge/(double)BridgeSamples;sample=bridgeFrom*(1-t)+sample*t;}
                 last=sample;output[dest+n]=sample;if(sample!=0)audible=true;
             }
-            dest+=count;if(playing) {untilTick-=count;untilService-=count;}
+            dest+=count;if(playing) {untilTick-=count;untilCounter-=count;untilService-=count;}
         }
         return audible;
     }
